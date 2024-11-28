@@ -1,0 +1,136 @@
+/* index.css */
+
+/* Variables para la paleta de colores */
+:root {
+  --azul-oscuro: #101C29;
+  --azul-profundo: #0A1C3D;
+  --azul-vibrante: #2868C6;
+  --azul-claro: #91D2F4;
+  --lila-pastel: #CBA2EA;
+  --morado-oscuro: #3F3381;
+  --azul-medianoche: #1D1F5A;
+}
+
+/* Estilo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: var(--azul-claro);
+  background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--azul-medianoche);
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .logo-container h1 {
+  color: var(--azul-claro);
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header button.cta {
+  background: linear-gradient(to right, var(--azul-vibrante), var(--azul-claro));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: transform 0.2s;
+}
+
+header button.cta:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right, var(--lila-pastel), var(--azul-claro));
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom right, var(--azul-profundo), var(--morado-oscuro));
+  color: var(--azul-claro);
+}
+
+.hero-content h2 {
+  font-size: 2.5em;
+}
+
+.hero-content p {
+  margin: 20px 0;
+  font-size: 1.2em;
+}
+
+.hero-content .search-form {
+  display: flex;
+  gap: 10px;
+}
+
+.hero-content .search-form input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--azul-claro);
+}
+
+.hero-content .search-form button {
+  background: var(--azul-vibrante);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, var(--azul-vibrante), var(--morado-oscuro));
+  color: white;
+}
+
+.cta-section h3 {
+  font-size: 2em;
+}
+
+.cta-section .button-primary {
+  background: linear-gradient(to right, var(--azul-vibrante), var(--lila-pastel));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--azul-medianoche);
+  color: var(--azul-claro);
+}
+
+footer .footer-links a {
+  color: var(--azul-claro);
+  text-decoration: none;
+}
+
+footer .footer-links a:hover {
+  text-decoration: underline;
+}

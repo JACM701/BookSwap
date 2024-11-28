@@ -1,0 +1,160 @@
+/* comunidad.css */
+
+/* Variables para la paleta de colores */
+:root {
+  --azul-oscuro: #101C29;
+  --azul-profundo: #0A1C3D;
+  --azul-vibrante: #2868C6;
+  --azul-claro: #91D2F4;
+  --lila-pastel: #CBA2EA;
+  --morado-oscuro: #3F3381;
+  --azul-medianoche: #1D1F5A;
+}
+
+/* General */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
+  color: var(--azul-claro);
+}
+
+h1, h2, h3, h4 {
+  color: var(--azul-claro);
+}
+
+p {
+  color: var(--azul-claro);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--azul-medianoche);
+  padding: 15px 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+header .logo-container h1 {
+  font-size: 2rem;
+}
+
+header nav {
+  display: flex;
+  justify-content: center; /* Centra los botones */
+  align-items: center;
+  width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
+  gap: 15px; /* Espacio entre los botones */
+}
+
+header button {
+  background: var(--azul-vibrante);
+  color: white;
+  border: none;
+  padding: 8px 20px; /* Reducido el tamaño de los botones */
+  border-radius: 20px; /* Bordes más redondeados */
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras */
+  transition: all 0.3s ease; /* Efecto de transición suave */
+  font-size: 0.9rem; /* Reducido el tamaño de la fuente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+
+header button:hover {
+  background: var(--lila-pastel);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada en hover */
+  transform: scale(1.05); /* Efecto de agrandamiento en hover */
+}
+
+/* Main Content */
+main {
+  padding: 20px 40px;
+}
+
+.community-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.community-content p {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+section h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--lila-pastel);
+}
+
+.forums .forum,
+.groups .group {
+  background: linear-gradient(to bottom, var(--azul-profundo), var(--morado-oscuro));
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  color: var(--azul-claro);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.forums .forum:hover,
+.groups .group:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom, var(--azul-claro), var(--lila-pastel));
+}
+
+/* Buttons within Content */
+.forums button,
+.groups button,
+.comments button {
+  background: linear-gradient(to right, var(--azul-vibrante), var(--lila-pastel));
+  color: white;
+  border: none;
+  padding: 8px 18px; /* Reducido el tamaño de los botones */
+  border-radius: 20px; /* Bordes más redondeados */
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase; /* Texto en mayúsculas */
+  letter-spacing: 1px; /* Espaciado entre letras */
+  transition: all 0.3s ease; /* Efecto de transición suave */
+  font-size: 0.9rem; /* Reducido el tamaño de la fuente */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+
+.forums button:hover,
+.groups button:hover,
+.comments button:hover {
+  background: linear-gradient(to right, var(--lila-pastel), var(--azul-claro));
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada en hover */
+  transform: scale(1.05); /* Efecto de agrandamiento en hover */
+}
+
+/* Footer */
+footer {
+  background: var(--azul-medianoche);
+  color: var(--azul-claro);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--lila-pastel);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

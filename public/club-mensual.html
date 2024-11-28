@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Club Mensual</title>
+  <link rel="stylesheet" href="css/club-mensual.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('explorar.html')">
+        <span>Explorar Libros</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('perfil.html')">
+        <span>Perfil</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <main class="club-content">
+    <h2>Club de Lectura Mensual</h2>
+    <p>Únete al club mensual para descubrir y compartir libros de interés.</p>
+    
+    <div class="club-info">
+      <div class="book-of-the-month">
+        <h3>Libro del Mes</h3>
+        <img src="libro-del-mes.jpg" alt="Libro del Mes">
+        <p>Este mes, nuestro libro seleccionado es 'El Alquimista' de Paulo Coelho.</p>
+      </div>
+
+      <div class="next-meeting">
+        <h3>Próxima Reunión</h3>
+        <p>Fecha: 25 de Noviembre de 2024</p>
+        <p>Hora: 19:00</p>
+        <p>Ubicación: En línea (vía Zoom)</p>
+      </div>
+    </div>
+
+    <div class="discussion-section">
+      <h3>Participa en la Discusión</h3>
+      <textarea placeholder="Escribe tus comentarios sobre el libro..."></textarea>
+      <button class="cta">Publicar Comentario</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Explorar Libros</title>
+  <link rel="stylesheet" href="css/explorar.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('index.html')">
+        <span>Inicio</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('perfil.html')">
+        <span>Perfil</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <main class="explorar-content">
+    <aside class="genre-sidebar">
+      <h3>Géneros</h3>
+      <ul id="genreList">
+        <li><a href="#" onclick="filterBooksByGenre('Ficción')">Ficción</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Novela')">Novela</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Historia')">Historia</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Fantasía')">Fantasía</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Ciencia Ficción')">Ciencia Ficción</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Romance')">Romance</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Misterio')">Misterio</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Biografía')">Biografía</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Autoayuda')">Autoayuda</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Poesía')">Poesía</a></li>
+        <li><a href="#" onclick="filterBooksByGenre('Todos')">Todos</a></li>
+      </ul>
+    </aside>
+
+    <section class="book-section">
+      <div class="search-bar">
+        <input type="text" placeholder="Buscar libros...">
+        <button>Buscar</button>
+      </div>
+
+      <h2>Libros Disponibles</h2>
+      <div class="book-cards" id="bookCards">
+        <!-- Los libros se cargarán aquí dinámicamente -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BookSwap</p>
+  </footer>
+
+  <!-- Modal para mostrar más detalles del libro -->
+  <div id="bookModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="bookTitle">Título del libro</h2>
+      <p><strong>Autor:</strong> <span id="bookAuthor"></span></p>
+      <p><strong>Género:</strong> <span id="bookGenre"></span></p>
+      <p><strong>Descripción:</strong> <span id="bookDescription"></span></p>
+      <img id="bookImage" src="img" alt="Imagen del libro" style="width: 100%; margin-top: 10px;">
+      <button onclick="interchangeBook()">Intercambiar Libro</button>
+    </div>
+  </div>
+
+  <script src="js/explorar.js"></script>
+</body>
+</html>

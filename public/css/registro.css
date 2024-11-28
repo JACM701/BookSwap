@@ -1,0 +1,172 @@
+/* Variables de colores */
+:root {
+  --color-azul-oscuro: #101C29;
+  --color-azul-profundo: #0A1C3D;
+  --color-azul-vibrante: #2868C6;
+  --color-azul-claro: #91D2F4;
+  --color-lila-pastel: #CBA2EA;
+  --color-morado-oscuro: #3F3381;
+  --color-azul-medianoche: #1D1F5A;
+}
+
+/* General */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--color-azul-oscuro);
+  color: var(--color-azul-claro);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, var(--color-azul-profundo), var(--color-azul-medianoche));
+  color: var(--color-azul-claro);
+}
+
+header .logo-container h1 {
+  font-size: 1.8em;
+  margin: 0;
+  color: var(--color-lila-pastel);
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+nav button.cta {
+  background: linear-gradient(45deg, var(--color-azul-vibrante), var(--color-lila-pastel));
+  border: none;
+  border-radius: 20px;
+  color: var(--color-azul-claro);
+  padding: 10px 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+nav button.cta:hover {
+  background: linear-gradient(45deg, var(--color-lila-pastel), var(--color-azul-vibrante));
+  color: var(--color-azul-medianoche);
+}
+
+header .login-btn {
+  background: linear-gradient(45deg, var(--color-morado-oscuro), var(--color-azul-vibrante));
+  border: none;
+  border-radius: 25px;
+  color: var(--color-azul-claro);
+  padding: 10px 20px;
+  font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+header .login-btn:hover {
+  background: linear-gradient(45deg, var(--color-azul-vibrante), var(--color-lila-pastel));
+  transform: scale(1.1);
+}
+
+/* Sección principal */
+main.register-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 30px;
+}
+
+main.register-content h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: var(--color-azul-claro);
+}
+
+main.register-content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(135deg, var(--color-azul-medianoche), var(--color-morado-oscuro));
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+main.register-content form label {
+  align-self: flex-start;
+  font-size: 0.9em;
+  color: var(--color-lila-pastel);
+}
+
+main.register-content form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-azul-medianoche);
+  color: var(--color-azul-claro);
+}
+
+main.register-content form input::placeholder {
+  color: var(--color-azul-claro);
+}
+
+main.register-content form button {
+  background: linear-gradient(45deg, var(--color-azul-vibrante), var(--color-morado-oscuro));
+  border: none;
+  border-radius: 20px;
+  color: var(--color-azul-claro);
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+main.register-content form button:hover {
+  background: linear-gradient(45deg, var(--color-morado-oscuro), var(--color-azul-vibrante));
+  transform: scale(1.05);
+}
+
+main.register-content p {
+  margin-top: 15px;
+  color: var(--color-azul-claro);
+}
+
+main.register-content p a {
+  color: var(--color-lila-pastel);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main.register-content p a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px 20px;
+  background: linear-gradient(90deg, var(--color-azul-medianoche), var(--color-azul-profundo));
+  color: var(--color-azul-claro);
+  font-size: 0.9em;
+}

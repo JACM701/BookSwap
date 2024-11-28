@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Inicio</title>
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('explorar.html')">
+        <span>Explorar Libros</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('perfil.html')">
+        <span>Perfil</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2>LEE Y AÑADE TU PERSPECTIVA</h2>
+      <p>Encuentra tus libros favoritos, descubre nuevas lecturas y comparte tus pensamientos con una comunidad apasionada.</p>
+      <form class="search-form">
+        <input type="text" placeholder="Busca libros...">
+        <button class="cta" type="submit">
+          <span>Buscar</span>
+          <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
+        </button>
+      </form>
+    </div>
+    <div class="hero-image">
+      <img src="img/Imagen_de_WhatsApp_2024-10-21_a_las_13.09.42_1325c2fd-removebg-preview.png" alt="Persona con libros">
+    </div>
+  </section>
+
+  <!-- Llamado a la acción -->
+  <section class="cta-section">
+    <h3>Únete a Nuestra Comunidad</h3>
+    <p>Regístrate hoy y comienza a intercambiar libros, escribir reseñas y participar en debates emocionantes.</p>
+    <button class="cta button-primary" onclick="redirectTo('registro.html')">
+      <span>Regístrate</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="contacto.html">Contacto</a> | 
+      <a href="terminos.html">Términos de Uso</a> | 
+      <a href="privacidad.html">Privacidad</a>
+    </div>
+    <p>&copy; 2024 BookSwap | Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/index.js"></script>
+</body>
+</html>

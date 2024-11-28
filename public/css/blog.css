@@ -1,0 +1,124 @@
+/* Colores base */
+:root {
+  --color-azul-oscuro: #101C29;
+  --color-azul-profundo: #0A1C3D;
+  --color-azul-vibrante: #2868C6;
+  --color-azul-claro: #91D2F4;
+  --color-lila-pastel: #CBA2EA;
+  --color-morado-oscuro: #3F3381;
+  --color-azul-medianoche: #1D1F5A;
+}
+
+/* General */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-azul-profundo));
+  color: var(--color-azul-claro);
+}
+
+h1, h2, h3, h4 {
+  color: var(--color-azul-claro);
+}
+
+a {
+  color: var(--color-lila-pastel);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  background: var(--color-azul-medianoche);
+  color: var(--color-azul-claro);
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+  font-size: 1.5em;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header button.cta {
+  background: var(--color-azul-vibrante);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+header button.cta:hover {
+  background: var(--color-azul-claro);
+}
+
+/* Main */
+main {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.blog-card {
+  background: linear-gradient(145deg, var(--color-morado-oscuro), var(--color-azul-profundo));
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.blog-card img {
+  width: 100%;
+  height: auto;
+}
+
+.blog-info {
+  padding: 15px;
+  color: var(--color-azul-claro);
+}
+
+.blog-info h3 {
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.blog-info p {
+  margin: 0 0 10px;
+  color: var(--color-lila-pastel);
+}
+
+.blog-info button.cta {
+  background: var(--color-azul-vibrante);
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+

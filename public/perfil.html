@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Perfil</title>
+  <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('index.html')">
+        <span>Inicio</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('explorar.html')">
+        <span>Explorar Libros</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <main class="profile-content">
+    <h2>Mi Perfil</h2>
+    <div class="profile-details">
+      <p>Nombre de Usuario: <span>NombreUsuario</span></p>
+      <p>Email: <span>usuario@example.com</span></p>
+      <!-- Más detalles de usuario -->
+    </div>
+    <section class="user-books">
+      <h3>Mis Libros</h3>
+      <div class="book-card">
+        <img src="img/El Jardín De Las Mariposas.jpg" alt="Libro 1">
+        <h4>El Jardin De Las Mariposas</h4>
+        <p>Dot Hutchison</p>
+      </div>
+      <!-- Más libros -->
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

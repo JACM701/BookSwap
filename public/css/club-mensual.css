@@ -1,0 +1,162 @@
+/* Colores base */
+:root {
+  --color-azul-oscuro: #101C29;
+  --color-azul-profundo: #0A1C3D;
+  --color-azul-vibrante: #2868C6;
+  --color-azul-claro: #91D2F4;
+  --color-lila-pastel: #CBA2EA;
+  --color-morado-oscuro: #3F3381;
+  --color-azul-medianoche: #1D1F5A;
+  --color-fondo-general: #E5E5E5; /* Fondo suave para todo */
+}
+
+/* Reset y base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: var(--color-fondo-general); /* Nuevo fondo suave */
+  color: #333; /* Color de texto oscuro para contraste */
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: var(--color-azul-profundo);
+  border-radius: 8px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #fff;
+}
+
+nav button {
+  background: var(--color-azul-vibrante);
+  color: #fff;
+  border: none;
+  padding: 8px 16px; /* Botones más pequeños */
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem; /* Reducido el tamaño de la fuente */
+}
+
+nav button:hover {
+  background: var(--color-lila-pastel);
+}
+
+.cta {
+  background: var(--color-morado-oscuro);
+  color: #fff;
+  border: none;
+  padding: 10px 18px; /* Botón ajustado */
+  margin-top: 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta:hover {
+  background: var(--color-azul-vibrante);
+}
+
+.login-btn {
+  background: var(--color-lila-pastel);
+  padding: 10px 18px; /* Ajuste en tamaño */
+  font-size: 1rem;
+  margin-left: 15px;
+}
+
+.login-btn:hover {
+  background: var(--color-azul-vibrante);
+}
+
+.club-content {
+  background: var(--color-azul-medianoche);
+  padding: 30px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.club-content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--color-azul-claro);
+}
+
+.club-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.book-of-the-month, .next-meeting {
+  background: linear-gradient(145deg, var(--color-azul-profundo), var(--color-azul-oscuro));
+  padding: 30px; /* Cuadros más grandes */
+  border-radius: 8px;
+  width: 48%;
+}
+
+.book-of-the-month img, .next-meeting img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.book-of-the-month h3, .next-meeting h3 {
+  color: var(--color-azul-claro);
+  margin-bottom: 10px;
+}
+
+.book-of-the-month p, .next-meeting p {
+  font-size: 1.1rem; /* Aumento de tamaño de texto */
+  color: #f1f1f1;
+}
+
+.discussion-section {
+  margin-top: 40px;
+  background: var(--color-azul-oscuro);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.discussion-section h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 10px;
+  background: var(--color-azul-medianoche);
+  border: 1px solid var(--color-lila-pastel);
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 30px;
+  color: var(--color-azul-claro);
+  font-size: 1rem;
+}
+
+/* Media queries para mejorar la visualización en pantallas pequeñas */
+@media (max-width: 768px) {
+  .club-info {
+    flex-direction: column;
+  }
+}

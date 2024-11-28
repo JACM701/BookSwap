@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Foro de Recomendaciones</title>
+  <link rel="stylesheet" href="css/foro-recomendaciones.css">
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('explorar.html')">
+        <span>Explorar Libros</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('perfil.html')">
+        <span>Perfil</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="forum-topics">
+      <h2>Recomendaciones de Libros</h2>
+      <p>Descubre y comparte libros que no puedes dejar de leer.</p>
+      <ul>
+        <li class="topic">
+          <h4><a href="detalle-recomendacion1.html">Libros de Fantasía que Deberías Leer</a></h4>
+          <p>Por <strong>Juan Pérez</strong> | 15 comentarios</p>
+        </li>
+        <li class="topic">
+          <h4><a href="detalle-recomendacion2.html">Recomendaciones de Novelas de Ciencia Ficción</a></h4>
+          <p>Por <strong>Lucía Gómez</strong> | 8 comentarios</p>
+        </li>
+        <li class="topic">
+          <h4><a href="detalle-recomendacion3.html">Mis Favoritos de Romance del Año</a></h4>
+          <p>Por <strong>Ana Rodríguez</strong> | 12 comentarios</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="forum-create-topic">
+      <h3>Crear Nueva Recomendación</h3>
+      <form action="#" method="post">
+        <label for="titulo">Título de tu Recomendación:</label>
+        <input type="text" id="titulo" name="titulo" placeholder="Ejemplo: Mis libros favoritos de misterio">
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="5" placeholder="Escribe una breve descripción de tus recomendaciones..."></textarea>
+
+        <button type="submit">Publicar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
+  </footer>
+
+  <script>
+    function redirectTo(page) {
+      window.location.href = page;
+    }
+  </script>
+</body>
+</html>

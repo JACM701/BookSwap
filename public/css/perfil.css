@@ -1,0 +1,135 @@
+/* perfil.css */
+
+/* Variables para la paleta de colores */
+:root {
+  --azul-oscuro: #101C29;
+  --azul-profundo: #0A1C3D;
+  --azul-vibrante: #2868C6;
+  --azul-claro: #91D2F4;
+  --lila-pastel: #CBA2EA;
+  --morado-oscuro: #3F3381;
+  --azul-medianoche: #1D1F5A;
+}
+
+/* Estilo general */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
+  color: var(--azul-claro);
+}
+
+h1, h2, h3, h4 {
+  color: var(--azul-claro);
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--azul-medianoche);
+  padding: 15px 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+header .logo-container h1 {
+  font-size: 1.8em;
+}
+
+header nav {
+  display: flex;
+  gap: 15px;
+}
+
+header button.cta {
+  background: linear-gradient(to right, var(--azul-vibrante), var(--azul-claro));
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+header button.cta:hover {
+  background: linear-gradient(to right, var(--lila-pastel), var(--azul-claro));
+}
+
+header button.login-btn {
+  background: var(--morado-oscuro);
+}
+
+/* Main Content */
+main {
+  padding: 20px 40px;
+}
+
+.profile-content h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-details {
+  margin-bottom: 30px;
+  background: linear-gradient(to right, var(--azul-profundo), var(--morado-oscuro));
+  padding: 20px;
+  border-radius: 10px;
+  color: var(--azul-claro);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.profile-details span {
+  color: var(--azul-claro);
+  font-weight: bold;
+}
+
+.user-books h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.book-card {
+  display: inline-block;
+  background: linear-gradient(to bottom, var(--azul-vibrante), var(--morado-oscuro));
+  color: white;
+  border-radius: 10px;
+  padding: 15px;
+  width: 200px;
+  margin: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to bottom, var(--lila-pastel), var(--azul-claro));
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Footer */
+footer {
+  background: var(--azul-medianoche);
+  color: var(--azul-claro);
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
+  font-size: 0.9em;
+}
+
+footer a {
+  color: var(--lila-pastel);
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

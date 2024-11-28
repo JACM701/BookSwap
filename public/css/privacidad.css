@@ -1,0 +1,151 @@
+/* Variables de colores */
+:root {
+  --azul-oscuro: #101C29;
+  --azul-profundo: #0A1C3D;
+  --azul-vibrante: #2868C6;
+  --azul-claro: #91D2F4;
+  --lila-pastel: #CBA2EA;
+  --morado-oscuro: #3F3381;
+  --azul-medianoche: #1D1F5A;
+  --blanco: #FFFFFF;
+}
+
+/* Reset general */
+body, h1, h2, h3, p, ul, li, a, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background: var(--azul-oscuro);
+  color: var(--blanco);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background: linear-gradient(90deg, var(--azul-profundo), var(--azul-medianoche));
+}
+
+header .logo-container h1 {
+  font-size: 2em;
+  color: var(--lila-pastel);
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav button {
+  border: none;
+  background: linear-gradient(45deg, var(--azul-vibrante), var(--morado-oscuro));
+  color: var(--blanco);
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+nav button:hover {
+  background: linear-gradient(45deg, var(--morado-oscuro), var(--azul-vibrante));
+}
+
+.login-btn {
+  background: linear-gradient(45deg, var(--azul-vibrante), var(--morado-oscuro));
+  color: var(--blanco);
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: linear-gradient(45deg, var(--morado-oscuro), var(--azul-vibrante));
+}
+
+/* Main */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.privacy-container {
+  background: linear-gradient(135deg, var(--azul-profundo), var(--morado-oscuro));
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  max-width: 800px;
+  width: 100%;
+}
+
+.privacy-container h2 {
+  font-size: 2.5em;
+  color: var(--blanco);
+  margin-bottom: 15px;
+}
+
+.privacy-container h3 {
+  font-size: 1.6em;
+  color: var(--blanco);
+  margin-top: 20px;
+}
+
+.privacy-container p {
+  font-size: 1em;
+  color: var(--blanco);
+  margin-bottom: 20px;
+}
+
+.privacy-container ul {
+  margin-left: 20px;
+}
+
+.privacy-container li {
+  font-size: 1em;
+  color: var(--blanco);
+}
+
+.privacy-container a {
+  color: var(--lila-pastel);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.privacy-container a:hover {
+  color: var(--azul-vibrante);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--azul-medianoche);
+  color: var(--blanco);
+  font-size: 1em;
+}
+
+footer a {
+  color: var(--lila-pastel);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--azul-vibrante);
+}

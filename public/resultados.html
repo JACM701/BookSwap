@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookSwap - Resultados de Búsqueda</title>
+  <link rel="stylesheet" href="Css/resultados.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo-container">
+      <h1>BookSwap</h1>
+    </div>
+    <nav>
+      <button class="cta" onclick="redirectTo('index.html')">
+        <span>Inicio</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('explorar.html')">
+        <span>Explorar Libros</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('perfil.html')">
+        <span>Perfil</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('comunidad.html')">
+        <span>Comunidad</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <button class="cta" onclick="redirectTo('blog.html')">
+        <span>Blog</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+    </nav>
+    <button class="cta login-btn" onclick="redirectTo('login.html')">
+      <span>Iniciar Sesión</span>
+      <svg width="15px" height="10px" viewBox="0 0 13 10">
+        <path d="M1,5 L11,5"></path>
+        <polyline points="8 1 12 5 8 9"></polyline>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Barra de búsqueda -->
+  <section class="search-section">
+    <div class="search-container">
+      <h2>Resultados de Búsqueda</h2>
+      <form class="search-form">
+        <input type="text" id="searchInput" placeholder="Buscar libros...">
+        <button class="cta" type="submit">
+          <span>Buscar</span>
+          <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
+        </button>
+      </form>
+      <p>Resultados para: <strong id="searchQuery"></strong></p>
+    </div>
+  </section>
+
+  <!-- Sección de Resultados -->
+  <section class="result-section">
+    <h3>Libros Encontrados</h3>
+    <div class="book-cards" id="resultCards">
+      <!-- Aquí se insertarán dinámicamente los resultados de la búsqueda -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a href="contacto.html">Contacto</a> | 
+      <a href="terminos.html">Términos de Uso</a> | 
+      <a href="privacidad.html">Privacidad</a>
+    </div>
+    <p>&copy; 2024 BookSwap | Todos los derechos reservados</p>
+  </footer>
+
+  <script src="js/resultados.js"></script>
+</body>
+</html>

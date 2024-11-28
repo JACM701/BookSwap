@@ -1,0 +1,145 @@
+/* Colores base */
+:root {
+  --color-azul-oscuro: #101C29;
+  --color-azul-profundo: #0A1C3D;
+  --color-azul-vibrante: #2868C6;
+  --color-azul-claro: #91D2F4;
+  --color-lila-pastel: #CBA2EA;
+  --color-morado-oscuro: #3F3381;
+  --color-azul-medianoche: #1D1F5A;
+}
+
+/* Estilos globales */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, var(--color-azul-oscuro), var(--color-azul-profundo));
+  color: var(--color-azul-claro);
+}
+
+header {
+  background: linear-gradient(to right, var(--color-azul-medianoche), var(--color-morado-oscuro));
+  color: var(--color-lila-pastel);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+nav {
+  display: flex;
+  gap: 1rem;
+}
+
+button.cta {
+  background: linear-gradient(135deg, var(--color-azul-vibrante), var(--color-azul-claro));
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 1.5rem;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+button.cta:hover {
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-azul-vibrante));
+}
+
+/* Botón de Iniciar Sesión */
+button.login-btn {
+  background: linear-gradient(135deg, var(--color-azul-vibrante), var(--color-azul-claro));
+  color: var(--color-azul-oscuro);
+  font-weight: bold;
+  padding: 0.5rem 1.8rem;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button.login-btn:hover {
+  background: linear-gradient(135deg, var(--color-azul-claro), var(--color-azul-vibrante)); /* Un tono más brillante del dorado */
+}
+
+main.grupo-content {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: linear-gradient(to right, var(--color-azul-profundo), var(--color-azul-medianoche));
+  border-radius: 10px;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+main.grupo-content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--color-lila-pastel);
+}
+
+.grupo-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.book-of-the-month, .next-meeting {
+  flex: 1;
+  min-width: 300px;
+  background: var(--color-azul-medianoche);
+  border-radius: 8px;
+  padding: 1rem;
+  color: var(--color-azul-claro);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.book-of-the-month h3, .next-meeting h3 {
+  margin-top: 0;
+}
+
+.book-of-the-month img {
+  width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.discussion-section {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.discussion-section textarea {
+  width: 100%;
+  max-width: 800px;
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid var(--color-azul-claro);
+  padding: 0.5rem;
+  font-size: 1rem;
+  background: var(--color-azul-profundo);
+  color: var(--color-azul-claro);
+  resize: none;
+}
+
+.discussion-section button.cta {
+  margin-top: 1rem;
+}
+
+footer {
+  background: var(--color-azul-medianoche);
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-azul-claro);
+  font-size: 0.9rem;
+}
