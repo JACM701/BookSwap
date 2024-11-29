@@ -4,7 +4,7 @@ function redirectTo(page) {
 }
 
 // Función de validación del formulario de registro
-document.getElementById("register-form")?.addEventListener("submit", function(event) {
+document.getElementById("register-form")?.addEventListener("submit", async function(event) {
   event.preventDefault();
   
   const username = document.getElementById("username").value;
@@ -24,28 +24,48 @@ document.getElementById("register-form")?.addEventListener("submit", function(ev
     return;
   }
   
-  // Si todo es válido, simula el registro
-  alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-  // Aquí puedes agregar la lógica para enviar los datos al servidor
+  // Enviar los datos al servidor
+  const response = await fetch("/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, email, password })
+  });
+
+  const data = await response.json();
+  alert(data.message || "¡Registro exitoso! Ahora puedes iniciar sesión.");
 });
 
+
 // Función de validación para el inicio de sesión
-document.querySelector("form")?.addEventListener("submit", function(event) {
+document.querySelector("form")?.addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const usernameOrEmail = document.querySelector("input[type='text']").value;
+  const email = document.querySelector("input[type='email']").value;
   const password = document.querySelector("input[type='password']").value;
 
   // Validación de campos vacíos
-  if (!usernameOrEmail || !password) {
+  if (!email || !password) {
     alert("Por favor, completa todos los campos.");
     return;
   }
 
-  // Lógica de inicio de sesión (simulada aquí)
-  alert("¡Inicio de sesión exitoso!");
-  // Aquí se validaría con un servidor
+  // Enviar los datos al servidor
+  const response = await fetch("/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await response.json();
+  if (data.token) {
+    localStorage.setItem("token", data.token);
+    alert("¡Inicio de sesión exitoso!");
+    window.location.href = "/perfil"; // Redirigir a la página de perfil
+  } else {
+    alert("Credenciales incorrectas");
+  }
 });
+
 
 // Función para mostrar mensajes de alerta cuando el usuario navega por el sitio
 document.querySelectorAll('.cta').forEach(function(button) {
