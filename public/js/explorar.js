@@ -1,3 +1,4 @@
+//public/js/explorar.js
 // Función para redirigir a otras páginas
 function redirectTo(page) {
     window.location.href = page;

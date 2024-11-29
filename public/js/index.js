@@ -1,8 +1,18 @@
+//public/js/index.js
 // Función para redirigir a otras páginas
 function redirectTo(page) {
   window.location.href = page;
 }
 
+document.getElementById("search-form").addEventListener("submit", async function(event) {
+  event.preventDefault();
+  const query = document.getElementById("search-query").value;
+  const response = await fetch(`/books?query=${query}`);
+  const books = await response.json();
+  // Mostrar los libros en el frontend
+});
+
+/* AQUI abajo estaba la logica de sanchez anterior Que era basica sin usar DB
 // Manejo de la búsqueda en la barra de búsqueda en la sección hero
 document.querySelector('.search-form').addEventListener('submit', function(event) {
   event.preventDefault();  // Evitar el comportamiento por defecto del formulario
@@ -16,7 +26,7 @@ document.querySelector('.search-form').addEventListener('submit', function(event
     alert("Por favor, ingresa un término de búsqueda.");
   }
 });
-
+*/
 // Manejo de la redirección para los botones de navegación en el header
 document.querySelectorAll('.cta').forEach(button => {
   button.addEventListener('click', function() {

@@ -1,4 +1,4 @@
-// resultados.js
+// //public/js/resultados.js
 
 // Obtener el formulario y los elementos relevantes
 const searchForm = document.querySelector('.search-form');

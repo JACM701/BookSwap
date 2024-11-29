@@ -3,69 +3,80 @@ function redirectTo(page) {
   window.location.href = page;
 }
 
-// Función de validación del formulario de registro
-document.getElementById("register-form")?.addEventListener("submit", async function(event) {
-  event.preventDefault();
-  
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-  
-  // Validación de campos vacíos
-  if (!username || !email || !password || !confirmPassword) {
-    alert("Por favor, completa todos los campos.");
-    return;
-  }
-  
-  // Validación de contraseñas coincidentes
-  if (password !== confirmPassword) {
-    alert("Las contraseñas no coinciden.");
-    return;
-  }
-  
-  // Enviar los datos al servidor
-  const response = await fetch("/register", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, email, password })
-  });
+// --- FUNCIONES PARA FORMULARIOS ---
 
-  const data = await response.json();
-  alert(data.message || "¡Registro exitoso! Ahora puedes iniciar sesión.");
+// Función de validación y registro de nuevo usuario
+document.addEventListener("DOMContentLoaded", function() {
+  const registerForm = document.getElementById("register-form");
+  if (registerForm) {
+    registerForm.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
+
+      // Validación de campos
+      if (!username || !email || !password || !confirmPassword) {
+        alert("Por favor, completa todos los campos.");
+        return;
+      }
+
+      if (password !== confirmPassword) {
+        alert("Las contraseñas no coinciden.");
+        return;
+      }
+
+      // Enviar la solicitud de registro
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, email, password })
+      });
+
+      const data = await response.json();
+      if (response.status === 201) {
+        alert("Usuario registrado con éxito");
+        window.location.href = "login.html"; // Redirigir al login
+      } else {
+        alert(data.message);
+      }
+    });
+  }
 });
 
-
 // Función de validación para el inicio de sesión
-document.querySelector("form")?.addEventListener("submit", async function(event) {
+document.getElementById("login-form").addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const email = document.querySelector("input[type='email']").value;
-  const password = document.querySelector("input[type='password']").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  // Validación de campos vacíos
+  // Validación de campos
   if (!email || !password) {
     alert("Por favor, completa todos los campos.");
     return;
   }
 
-  // Enviar los datos al servidor
-  const response = await fetch("/login", {
+  // Enviar la solicitud de inicio de sesión
+  const response = await fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password })
   });
 
   const data = await response.json();
-  if (data.token) {
-    localStorage.setItem("token", data.token);
+  if (response.status === 200) {
+    localStorage.setItem("token", data.token); // Guardar el token en localStorage
     alert("¡Inicio de sesión exitoso!");
-    window.location.href = "/perfil"; // Redirigir a la página de perfil
+    window.location.href = "perfil.html"; // Redirigir al perfil
   } else {
-    alert("Credenciales incorrectas");
+    alert(data.message);
   }
 });
 
+// --- FUNCIONES DE NAVEGACIÓN ---
 
 // Función para mostrar mensajes de alerta cuando el usuario navega por el sitio
 document.querySelectorAll('.cta').forEach(function(button) {
@@ -100,47 +111,29 @@ document.querySelectorAll('footer a').forEach(function(link) {
   });
 });
 
-// Función de validación del formulario de registro
-document.getElementById("register-form")?.addEventListener("submit", function(event) {
-  event.preventDefault();
-  
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-  
-  // Validación de campos vacíos
-  if (!username || !email || !password || !confirmPassword) {
-    showAlert("Por favor, completa todos los campos.");
-    return;
-  }
-  
-  // Validación de contraseñas coincidentes
-  if (password !== confirmPassword) {
-    showAlert("Las contraseñas no coinciden.");
-    return;
-  }
-  
-  // Si todo es válido, simula el registro
-  showAlert("¡Registro exitoso! Ahora puedes iniciar sesión.");
-  // Aquí puedes agregar la lógica para enviar los datos al servidor
-});
+// --- FUNCIONES PARA LIBROS ---
 
-// Función de validación para el inicio de sesión
-document.querySelector("form")?.addEventListener("submit", function(event) {
+// Lógica para agregar libros al sistema
+document.getElementById("add-book-form").addEventListener("submit", async function(event) {
   event.preventDefault();
 
-  const usernameOrEmail = document.querySelector("input[type='text']").value;
-  const password = document.querySelector("input[type='password']").value;
+  // Obtener valores del formulario
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const genre = document.getElementById("genre").value;
+  const description = document.getElementById("description").value;
+  const image = document.getElementById("image").value;
 
-  // Validación de campos vacíos
-  if (!usernameOrEmail || !password) {
-    showAlert("Por favor, completa todos los campos.");
-    return;
-  }
+  // Enviar la solicitud para agregar un libro
+  const response = await fetch("/books", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({ title, author, genre, description, image })
+  });
 
-  // Lógica de inicio de sesión (simulada aquí)
-  showAlert("¡Inicio de sesión exitoso!");
-  // Aquí se validaría con un servidor
+  const data = await response.json();
+  alert(data.message || "Libro agregado con éxito");
 });
-
