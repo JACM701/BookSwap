@@ -1,4 +1,4 @@
-const Book = require('../models/Book');
+const Book = require('/opt/render/project/src/models/Book');
 
 // Crear un libro
 exports.createBook = async (req, res) => {
