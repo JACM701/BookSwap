@@ -4,7 +4,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./Routes/authRoutes');
 const bookRoutes = require('./Routes/bookRoutes');
-const commentRoutes = require('.Routes/commentRoutes');
+const commentRoutes = require('./Routes/commentRoutes');
 const path = require('path');
 
 dotenv.config();
