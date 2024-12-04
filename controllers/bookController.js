@@ -1,6 +1,4 @@
-const path = require('path');
-const Book = require(path.join(__dirname, '../models/Book'));
-
+const Book = require('../models/Book');
 
 // Crear un libro
 exports.createBook = async (req, res) => {
