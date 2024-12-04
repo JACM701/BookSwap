@@ -5,74 +5,70 @@ function redirectTo(page) {
 
 // --- FUNCIONES PARA FORMULARIOS ---
 
-// Función de validación y registro de nuevo usuario
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.getElementById("register-form");
-  if (registerForm) {
-    registerForm.addEventListener("submit", async function(event) {
-      event.preventDefault();
+  const loginForm = document.getElementById("login-form");
 
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
       const username = document.getElementById("username").value;
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const confirmPassword = document.getElementById("confirm-password").value;
-
-      // Validación de campos
-      if (!username || !email || !password || !confirmPassword) {
-        alert("Por favor, completa todos los campos.");
-        return;
-      }
+      const errorMsg = document.getElementById("register-error");
 
       if (password !== confirmPassword) {
-        alert("Las contraseñas no coinciden.");
+        errorMsg.textContent = "Las contraseñas no coinciden.";
         return;
       }
 
-      // Enviar la solicitud de registro
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, email, password })
-      });
+      try {
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password })
+        });
 
-      const data = await response.json();
-      if (response.status === 201) {
-        alert("Usuario registrado con éxito");
-        window.location.href = "login.html"; // Redirigir al login
-      } else {
-        alert(data.message);
+        const data = await response.json();
+        if (response.ok) {
+          alert("Usuario registrado con éxito");
+          window.location.href = "login.html";
+        } else {
+          errorMsg.textContent = data.message || "Error en el registro.";
+        }
+      } catch (error) {
+        errorMsg.textContent = "Error de conexión, intenta de nuevo.";
       }
     });
   }
-});
 
-// Función de validación para el inicio de sesión
-document.getElementById("login-form").addEventListener("submit", async function(event) {
-  event.preventDefault();
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const errorMsg = document.getElementById("login-error");
 
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+      try {
+        const response = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
+        });
 
-  // Validación de campos
-  if (!email || !password) {
-    alert("Por favor, completa todos los campos.");
-    return;
-  }
-
-  // Enviar la solicitud de inicio de sesión
-  const response = await fetch("/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
-  });
-
-  const data = await response.json();
-  if (response.status === 200) {
-    localStorage.setItem("token", data.token); // Guardar el token en localStorage
-    alert("¡Inicio de sesión exitoso!");
-    window.location.href = "perfil.html"; // Redirigir al perfil
-  } else {
-    alert(data.message);
+        const data = await response.json();
+        if (response.ok) {
+          localStorage.setItem("token", data.token);
+          alert("Inicio de sesión exitoso");
+          window.location.href = "perfil.html";
+        } else {
+          errorMsg.textContent = data.message || "Credenciales incorrectas.";
+        }
+      } catch (error) {
+        errorMsg.textContent = "Error de conexión, intenta de nuevo.";
+      }
+    });
   }
 });
 

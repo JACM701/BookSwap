@@ -1,73 +1,86 @@
 const Comment = require('../models/Comment');
-const Book = require('../models/Book');
 
-// Crear comentario
+// Crear un comentario
 exports.createComment = async (req, res) => {
-    const { bookId, text } = req.body;
-    try {
-        const book = await Book.findById(bookId);
-        if (!book) return res.status(404).json({ error: 'Libro no encontrado' });
+  const { content, bookId, isCommunity } = req.body;
 
-        const newComment = new Comment({
-            text,
-            book: bookId,
-            user: req.user.id,
-        });
+  try {
+    const comment = new Comment({
+      content,
+      bookId: isCommunity ? null : bookId, // Si es para comunidad, bookId será null
+      isCommunity,
+      userId: req.user.id,
+    });
 
-        await newComment.save();
-        res.status(201).json({ message: 'Comentario creado exitosamente', comment: newComment });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error al crear el comentario' });
-    }
+    await comment.save();
+    res.status(201).json(comment);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Obtener comentarios de un libro
+// Obtener comentarios (por libro o comunidad)
 exports.getComments = async (req, res) => {
-    try {
-        const comments = await Comment.find({ book: req.params.bookId })
-            .populate('user', 'nombre email')
-            .populate('book', 'title');
-        res.status(200).json(comments);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error al obtener los comentarios' });
-    }
+  const { bookId, isCommunity } = req.query;
+
+  try {
+    const filter = isCommunity
+      ? { isCommunity: true }
+      : { bookId, isCommunity: false };
+
+    const comments = await Comment.find(filter).populate('userId', 'name email');
+    res.status(200).json(comments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Actualizar comentario
+// Editar un comentario
 exports.updateComment = async (req, res) => {
-    try {
-        const comment = await Comment.findById(req.params.id);
-        if (!comment) return res.status(404).json({ error: 'Comentario no encontrado' });
+  const { id } = req.params;
+  const { content } = req.body;
 
-        if (comment.user.toString() !== req.user.id) {
-            return res.status(403).json({ error: 'No tienes permisos para actualizar este comentario' });
-        }
+  try {
+    const comment = await Comment.findById(id);
 
-        comment.text = req.body.text;
-        await comment.save();
-        res.status(200).json({ message: 'Comentario actualizado exitosamente', comment });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error al actualizar el comentario' });
+    if (!comment) {
+      return res.status(404).json({ message: 'Comentario no encontrado' });
     }
+
+    if (comment.userId.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'No autorizado para editar este comentario' });
+    }
+
+    comment.content = content;
+    await comment.save();
+
+    res.status(200).json(comment);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
 
-// Eliminar comentario
+// Eliminar un comentario
 exports.deleteComment = async (req, res) => {
-    try {
-        const comment = await Comment.findById(req.params.id);
-        if (!comment) return res.status(404).json({ error: 'Comentario no encontrado' });
+  const { id } = req.params;
 
-        if (comment.user.toString() !== req.user.id) {
-            return res.status(403).json({ error: 'No tienes permisos para eliminar este comentario' });
-        }
+  try {
+    const comment = await Comment.findById(id);
 
-        await comment.remove();
-        res.status(200).json({ message: 'Comentario eliminado exitosamente' });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error al eliminar el comentario' });
+    if (!comment) {
+      return res.status(404).json({ message: 'Comentario no encontrado' });
     }
+
+    if (comment.userId.toString() !== req.user.id) {
+      return res.status(403).json({ message: 'No autorizado para eliminar este comentario' });
+    }
+
+    // Usamos deleteOne() en lugar de remove()
+    await Comment.deleteOne({ _id: id });
+
+    res.status(200).json({ message: 'Comentario eliminado' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+
