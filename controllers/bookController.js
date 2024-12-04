@@ -1,14 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-
-const modelsPath = path.join(__dirname, '../models');
-fs.readdir(modelsPath, (err, files) => {
-  if (err) {
-    console.error('Error al leer la carpeta models:', err);
-  } else {
-    console.log('Archivos en la carpeta models:', files);
-  }
-});
+import Book from './models/Book.js';
 
 // Crear un libro
 exports.createBook = async (req, res) => {
