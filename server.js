@@ -2,8 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const bookRoutes = require('./routes/bookRoutes');
+const authRoutes = require('./routes/AuthRoutes');
+const bookRoutes = require('./routes/BookRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const path = require('path');
 
