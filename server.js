@@ -19,8 +19,8 @@ app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_PATH 
 // Conexión a MongoDB
 mongoose
   .connect(process.env.MONGO_URI, {})
-  .then(() => console.log('Conectado a MongoDB'))
-  .catch((err) => console.error('Error conectando a MongoDB:', err));
+  .then(() => console.log('Conectado a MongoDB No le muevas papi'))
+  .catch((err) => console.error('Error conectando a MongoDB: ¿Porque mierda le mueves?', err));
 
 // Rutas
 app.use('/api/auth', authRoutes);
