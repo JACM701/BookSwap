@@ -1,57 +1,29 @@
-// Función para redirigir a otras páginas
-function redirectTo(page) {
-  window.location.href = page;
+// Función para manejar el cierre de sesión
+function toggleSession() {
+    localStorage.removeItem('token'); // Elimina el token del almacenamiento
+    window.location.href = 'login.html'; // Redirige al login después de cerrar sesión
 }
 
-// Función para manejar la búsqueda de libros
-document.querySelector('.search-bar button').addEventListener('click', function() {
-  const searchTerm = document.querySelector('.search-bar input').value.trim().toLowerCase();
-    
-  if (searchTerm) {
-    // Filtramos las tarjetas de libros basándonos en el término de búsqueda
-    const bookCards = document.querySelectorAll('.book-card');
-      
-    bookCards.forEach(card => {
-      const title = card.querySelector('h3').textContent.toLowerCase();
-      const author = card.querySelector('p').textContent.toLowerCase();
-
-      // Si el título o el autor contienen el término de búsqueda, mostramos la tarjeta
-      if (title.includes(searchTerm) || author.includes(searchTerm)) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-  } else {
-    // Si no hay término de búsqueda, mostramos todas las tarjetas
-    const bookCards = document.querySelectorAll('.book-card');
-    bookCards.forEach(card => {
-      card.style.display = 'block';
-    });
-  }
-});  
-
-// Opcional: Limpiar la búsqueda al hacer clic fuera del campo
-document.querySelector('.search-bar input').addEventListener('focus', function() {
-  this.value = ''; // Limpiar el campo de búsqueda al hacer foco
+// Eventos de los botones
+document.getElementById("btnInicio").addEventListener("click", () => {
+  window.location.href = "index.html";
 });
 
-const books = [
-{ title: "El Alquimista", author: "Paulo Coelho", genre: "Ficción", description: "Un viaje de autodescubrimiento...", image: "img/El Alquimista.jpg" },
-{ title: "Cien Años de Soledad", author: "Gabriel García Márquez", genre: "Novela", description: "La historia de la familia Buendía...", image: "img/portada cien años de soledad.jpg" },
-{ title: "1984", author: "George Orwell", genre: "Ciencia Ficción", description: "Una crítica al totalitarismo...", image: "img/40 best books to read before you die.jpg" },
-{ title: "Orgullo y Prejuicio", author: "Jane Austen", genre: "Romance", description: "El amor entre Elizabeth y Darcy...", image: "img/Sumérgete en la Magia de Orgullo y Prejuicio.jpg" },
-{ title: "El Hobbit", author: "J.R.R. Tolkien", genre: "Fantasía", description: "Las aventuras de Bilbo Bolsón...", image: "img/El Hobbit, Un Viaje Inesperado.jpg" },
-{ title: "La Historia Interminable", author: "Michael Ende", genre: "Fantasía", description: "Un niño que entra en un libro mágico...", image: "img/La Historia Interminable - Michael Ende_.jpg" },
-{ title: "El Visitante", author: "Stephen King", genre: "Misterio", description: "Un viaje de autodescubrimiento...", image: "img/30 libros de terror y novela negra para una noche de miedo.jpg" },
-{ title: "Boulevard", author: "Flor M. Salvador", genre: "Romance", description: "La historia de la familia Buendía...", image: "img/BOULEVARD 🌈🚬💫.jpg" },
-{ title: "El Jardin De Las Mariposas", author: "Dot Hutchison", genre: "Misterio", description: "Una crítica al totalitarismo...", image: "img/El Jardín De Las Mariposas.jpg" },
-{ title: "La Cancion De Aquiles", author: "Madeline Miller", genre: "Romance", description: "El amor entre Elizabeth y Darcy...", image: "img/LA CANCIÓN DE AQUILES (Madeline Miller).jpg" },
-{ title: "Fabricante De Lagrimas", author: "Erin Doom", genre: "Romance", description: "Las aventuras de Bilbo Bolsón...", image: "img/Fabricante de lágrimas (Spanish Edition).jpg" },
-{ title: "Romper El Circulo", author: "Colleen Hoover", genre: "Autoayuda", description: "Un niño que entra en un libro mágico...", image: "img/ROMPER EL CÍRCULO_ Collen Hoover_.jpg" }
-];
+document.getElementById("btnPerfil").addEventListener("click", () => {
+  window.location.href = "perfil.html";
+});
 
-let filteredBooks = books;
+document.getElementById("btnComunidad").addEventListener("click", () => {
+  window.location.href = "comunidad.html";
+});
+
+document.getElementById("btnBlog").addEventListener("click", () => {
+  window.location.href = "blog.html";
+});
+
+document.getElementById("btnCerrarSesion").addEventListener("click", () => {
+  toggleSession();
+});
 
 // Función para cargar libros desde la API
 function fetchBooks() {
@@ -99,14 +71,13 @@ function closeModal() {
   document.getElementById("bookModal").style.display = "none";
 }
 
-// Filtrar libros por género
+// Función para filtrar libros por género
 function filterBooksByGenre(genre) {
-  fetchBooks();  // Recargar todos los libros antes de filtrar
-  const filteredBooks = genre === 'Todos' ? books : books.filter(book => book.genre === genre);
-  displayBooks(filteredBooks);
+  fetch(`https://api-bookswap.onrender.com/api/books?genre=${genre}`)
+    .then(response => response.json())
+    .then(data => displayBooks(data))
+    .catch(error => console.error('Error al filtrar los libros:', error));
 }
 
-// Función que se ejecuta al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-  fetchBooks();  // Llamada para cargar los libros desde la API cuando la página cargue
-});
+// Llamada inicial para cargar los libros
+fetchBooks();
