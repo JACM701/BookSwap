@@ -43,8 +43,8 @@
         </svg>
       </button>
     </nav>
-    <button class="cta login-btn" onclick="redirectTo('login.html')" id="login-btn">
-      <span>Iniciar Sesión</span>
+    <button class="cta login-btn" onclick="toggleSession()" id="login-btn">
+      <span id="login-text">Cerrar Sesión</span>
       <svg width="15px" height="10px" viewBox="0 0 13 10">
         <path d="M1,5 L11,5"></path>
         <polyline points="8 1 12 5 8 9"></polyline>
@@ -74,7 +74,7 @@
   </section>
 
   <!-- Llamado a la acción -->
-  <section class="cta-section">
+  <section class="cta-section" id="cta-section">
     <h3>Únete a Nuestra Comunidad</h3>
     <p>Regístrate hoy y comienza a intercambiar libros, escribir reseñas y participar en debates emocionantes.</p>
     <button class="cta button-primary" onclick="redirectTo('registro.html')">
@@ -90,7 +90,7 @@
   <footer>
     <div class="footer-links">
       <a href="contacto.html">Contacto</a> | 
-      <a href="terminos.html">Términos de Uso</a> | 
+      <a href="terminos.html">Términos de Uso</a> |
       <a href="privacidad.html">Privacidad</a>
     </div>
     <p>&copy; 2024 BookSwap | Todos los derechos reservados</p>
