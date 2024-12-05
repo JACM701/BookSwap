@@ -46,7 +46,7 @@ async function getBooks() {
   }
 
   try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
+    const response = await fetch("https://bookswap-w7ze.onrender.com/api/books/user", {
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -72,8 +72,8 @@ function displayBooks(books) {
       <p>${book.genre}</p>
       <p>${book.description}</p>
       <img src="${book.imageUrl}" alt="Book image" width="100">
-      <button onclick="editBook(${book._id})">Editar</button>
-      <button onclick="deleteBook(${book._id})">Eliminar</button>
+      <button onclick="editBook('${book._id}')">Editar</button>
+      <button onclick="deleteBook('${book._id}')">Eliminar</button>
     `;
     booksList.appendChild(bookDiv);
   });
