@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const Book = require('../models/book'); // Asegúrate de importar el modelo aquí
 
 const modelsPath = path.join(__dirname, '../models');
 fs.readdir(modelsPath, (err, files) => {
@@ -79,7 +80,6 @@ exports.searchBooks = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
 
 // Actualizar un libro
 exports.updateBook = async (req, res) => {
