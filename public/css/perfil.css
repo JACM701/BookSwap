@@ -236,12 +236,28 @@ footer a:hover {
   border-radius: 8px;
   width: 300px;
   text-align: center;
+  color: var(--gris-oscuro); /* Cambié el color de las letras a gris oscuro */
+}
+
+.modal-content h2 {
+  color: var(--azul-oscuro); /* Color del título del modal en azul oscuro */
+}
+
+.modal-content p {
+  font-size: 1.1em;
+  color: var(--gris-medio); /* Color más oscuro para el texto en el modal */
+}
+
+button.cancel, button#confirmDeleteBtn {
+  padding: 10px 20px;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-top: 15px;
 }
 
 button.cancel {
   background-color: #ccc;
   color: #333;
-  margin-left: 10px;
 }
 
 button#confirmDeleteBtn {
