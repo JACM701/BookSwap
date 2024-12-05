@@ -4,7 +4,7 @@ function redirectTo(page) {
 }
 
 // --- FUNCIONES PARA FORMULARIOS ---
-const loginForm = document.getElementById("loginForm");
+const loginForm = document.getElementById("login-form");
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -34,15 +34,22 @@ loginForm.addEventListener("submit", async (e) => {
   }
 });
 
-
-const registroForm = document.getElementById("registroForm");
+//Registro
+const registroForm = document.getElementById("register-form");
 
 registroForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const name = document.getElementById("name").value;
+  const username = document.getElementById("username").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  // Verifica que las contraseñas coincidan
+  if (password !== confirmPassword) {
+    alert("Las contraseñas no coinciden.");
+    return;
+  }
 
   try {
     const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/register", {
@@ -50,7 +57,7 @@ registroForm.addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }),
+      body: JSON.stringify({ username, email, password }),
     });
 
     const data = await response.json();
@@ -65,7 +72,6 @@ registroForm.addEventListener("submit", async (e) => {
     console.error("Error:", error);
   }
 });
-
 
 // --- FUNCIONES DE NAVEGACIÓN ---
 
