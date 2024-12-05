@@ -31,6 +31,35 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error:", error);
     }
   });
+
+//Card we
+  function appendBookToList(book) {
+    const bookList = document.getElementById("book-list");
+  
+    // Crear el contenedor de la card
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("book-item");
+  
+    // Añadir contenido HTML a la card
+    bookElement.innerHTML = `
+      <h4>${book.title}</h4>
+      <p><strong>Autor:</strong> ${book.author}</p>
+      <p><strong>Género:</strong> ${book.genre}</p>
+      <p>${book.description}</p>
+      <img src="${book.imageUrl}" alt="Imagen de ${book.title}" />
+      <button class="edit-btn" onclick="editBook('${book._id}')">Editar</button>
+      <button class="delete-btn" onclick="openDeleteModal('${book._id}')">Eliminar</button>
+    `;
+  
+    // Añadir el nuevo libro al final de la lista
+    bookList.appendChild(bookElement);
+  }  
+  
+  alert("✅ Libro añadido con éxito.");
+const addedBook = await response.json();
+appendBookToList(addedBook);
+
+
   
   async function getBooks() {
     const token = localStorage.getItem("token");
