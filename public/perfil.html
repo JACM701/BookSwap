@@ -4,38 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookSwap - Perfil</title>
-  <!-- Usar CDN de Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/perfil.css">
 </head>
-<body class="bg-gradient-to-b from-[#101C29] to-[#0A1C3D] text-[#91D2F4]">
-
-  <header class="flex justify-between items-center bg-[#1D1F5A] p-5 shadow-lg">
+<body>
+  <header>
     <div class="logo-container">
-      <h1 class="text-2xl font-semibold">BookSwap</h1>
+      <h1>BookSwap</h1>
     </div>
-    <nav class="flex gap-4">
-      <button class="cta px-6 py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
+    <nav>
+      <button class="cta" id="btnInicio">
         <span>Inicio</span>
         <svg width="15px" height="10px" viewBox="0 0 13 10">
           <path d="M1,5 L11,5"></path>
           <polyline points="8 1 12 5 8 9"></polyline>
         </svg>
       </button>
-      <button class="cta px-6 py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
+      <button class="cta" id="btnExplorar">
         <span>Explorar Libros</span>
         <svg width="15px" height="10px" viewBox="0 0 13 10">
           <path d="M1,5 L11,5"></path>
           <polyline points="8 1 12 5 8 9"></polyline>
         </svg>
       </button>
-      <button class="cta px-6 py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
+      <button class="cta" id="btnComunidad">
         <span>Comunidad</span>
         <svg width="15px" height="10px" viewBox="0 0 13 10">
           <path d="M1,5 L11,5"></path>
           <polyline points="8 1 12 5 8 9"></polyline>
         </svg>
       </button>
-      <button class="cta px-6 py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
+      <button class="cta" id="btnBlog">
         <span>Blog</span>
         <svg width="15px" height="10px" viewBox="0 0 13 10">
           <path d="M1,5 L11,5"></path>
@@ -43,60 +41,65 @@
         </svg>
       </button>
     </nav>
-    <button class="cta px-6 py-3 bg-[#3F3381] text-white rounded-lg font-bold">
+    <button class="cta back-btn" id="btnVolver">
       <span>Volver</span>
     </button>
   </header>
 
-  <main class="p-8">
-    <h2 class="text-center text-3xl mb-8">Mi Perfil</h2>
-    <div class="profile-details bg-gradient-to-r from-[#0A1C3D] to-[#3F3381] p-6 rounded-xl shadow-xl mb-8">
-      <p>Nombre de Usuario: <span id="username" class="font-bold text-[#91D2F4]"></span></p>
-      <p>Email: <span id="email" class="font-bold text-[#91D2F4]"></span></p>
-      <h3 class="text-xl mt-6">Agregar Libros</h3>
-      <form id="addBookForm" class="space-y-4">
-        <input type="text" id="title" placeholder="Título" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white" />
-        <input type="text" id="author" placeholder="Autor" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white" />
-        <input type="text" id="genre" placeholder="Género" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white" />
-        <textarea id="description" placeholder="Descripción" class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white"></textarea>
-        <input type="text" id="imageUrl" placeholder="URL de imagen" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white" />
-        <button type="submit" class="w-full py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
-          Agregar Libro
-        </button>
+  <main class="profile-content">
+    <h2>Mi Perfil</h2>
+    <div class="profile-details">
+      <p>Nombre de Usuario: <span id="username"></span></p>
+      <p>Email: <span id="email"></span></p>
+      <h3>Agregar Libros</h3>
+      <form id="addBookForm">
+        <input type="text" id="title" placeholder="Título" required />
+        <input type="text" id="author" placeholder="Autor" required />
+        <input type="text" id="genre" placeholder="Género" required />
+        <textarea id="description" placeholder="Descripción"></textarea>
+        <input type="text" id="imageUrl" placeholder="URL de imagen" required />
+        <button type="submit">Agregar Libro</button>
       </form>
     </div>
 
     <section class="user-books">
-      <h3 class="text-center text-xl mb-6">Mis Libros</h3>
-      <div id="book-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        <!-- Aquí aparecerán los libros agregados -->
-      </div>
+      <h3>Mis Libros</h3>
+      <div id="book-list"></div> <!-- Aquí aparecerán los libros agregados -->
     </section>
   </main>
 
-  <footer class="bg-[#1D1F5A] text-[#91D2F4] text-center py-4 mt-10">
-    <p>&copy; 2024 BookSwap | <a href="#" class="text-[#CBA2EA] hover:underline">Contacto</a> | <a href="#" class="text-[#CBA2EA] hover:underline">Términos de Uso</a> | <a href="#" class="text-[#CBA2EA] hover:underline">Privacidad</a></p>
+  <footer>
+    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
   </footer>
 
   <!-- Modal para editar el libro -->
-  <div id="editBookModal" class="modal fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-    <div class="modal-content bg-white p-6 rounded-lg">
-      <h3 class="text-xl mb-4">Editar Libro</h3>
+  <div id="editBookModal" class="modal">
+    <div class="modal-content">
+      <h3>Editar Libro</h3>
       <form id="editBookForm">
-        <input type="text" id="editTitle" placeholder="Título" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white mb-4" />
-        <input type="text" id="editAuthor" placeholder="Autor" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white mb-4" />
-        <input type="text" id="editGenre" placeholder="Género" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white mb-4" />
-        <textarea id="editDescription" placeholder="Descripción" class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white mb-4"></textarea>
-        <input type="text" id="editImageUrl" placeholder="URL de imagen" required class="w-full p-3 rounded-lg border bg-[#1D1F5A] text-white mb-4" />
-        <button type="submit" class="w-full py-3 bg-gradient-to-r from-[#2868C6] to-[#91D2F4] text-white rounded-lg font-bold hover:bg-gradient-to-r hover:from-[#CBA2EA] hover:to-[#91D2F4]">
-          Guardar Cambios
-        </button>
-        <button type="button" class="cancel py-2 px-6 bg-[#ccc] text-[#333] mt-4 rounded-lg" onclick="closeModal()">Cancelar</button>
+        <input type="text" id="editTitle" placeholder="Título" required />
+        <input type="text" id="editAuthor" placeholder="Autor" required />
+        <input type="text" id="editGenre" placeholder="Género" required />
+        <textarea id="editDescription" placeholder="Descripción"></textarea>
+        <input type="text" id="editImageUrl" placeholder="URL de imagen" required />
+        <button type="submit">Guardar Cambios</button>
+        <button type="button" class="cancel" onclick="closeModal()">Cancelar</button>
       </form>
     </div>
   </div>
-  
+
+  <!-- Modal para confirmar la eliminación -->
+<div id="deleteBookModal" class="modal">
+  <div class="modal-content">
+    <h3>Confirmar Eliminación</h3>
+    <p>¿Estás seguro de que deseas eliminar este libro?</p>
+    <button id="confirmDeleteBtn">Eliminar</button>
+    <button class="cancel" onclick="closeModal()">Cancelar</button>
+  </div>
+</div>
+
   <script src="js/script.js"></script>
   <script src="js/libros.js"></script>
+  
 </body>
 </html>

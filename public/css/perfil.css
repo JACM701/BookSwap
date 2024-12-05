@@ -1,5 +1,3 @@
-/* perfil.css */
-
 /* Variables para la paleta de colores */
 :root {
   --azul-oscuro: #101C29;
@@ -9,20 +7,26 @@
   --lila-pastel: #CBA2EA;
   --morado-oscuro: #3F3381;
   --azul-medianoche: #1D1F5A;
+  --blanco: #fff;
+  --gris-claro: #e0e0e0;
+  --gris-oscuro: #2c2c2c;
 }
 
 /* Estilo general */
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
   color: var(--azul-claro);
   padding: 0;
   box-sizing: border-box;
+  line-height: 1.6;
 }
 
+/* Títulos */
 h1, h2, h3, h4 {
   color: var(--azul-claro);
+  font-weight: bold;
 }
 
 /* Header */
@@ -36,7 +40,8 @@ header {
 }
 
 header .logo-container h1 {
-  font-size: 1.8em;
+  font-size: 2em;
+  font-weight: bold;
 }
 
 header nav {
@@ -46,64 +51,73 @@ header nav {
 
 header button.cta {
   background: linear-gradient(to right, var(--azul-vibrante), var(--azul-claro));
-  color: white;
+  color: var(--blanco);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 header button.cta:hover {
   background: linear-gradient(to right, var(--lila-pastel), var(--azul-claro));
+  transform: scale(1.05);
 }
 
 header button.back-btn {
   background: var(--morado-oscuro);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.1em;
 }
 
 /* Main Content */
 main {
-  padding: 20px 40px;
+  padding: 30px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .profile-content h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
+  font-size: 2.5em;
+  margin-bottom: 30px;
   text-align: center;
+  text-transform: uppercase;
+  color: var(--blanco);
 }
 
 .profile-details {
-  margin-bottom: 30px;
   background: linear-gradient(to right, var(--azul-profundo), var(--morado-oscuro));
-  padding: 20px;
-  border-radius: 10px;
-  color: var(--azul-claro);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 15px;
+  color: var(--blanco);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .profile-details span {
-  color: var(--azul-claro);
+  color: var(--blanco);
   font-weight: bold;
 }
 
 .user-books h3 {
   margin-bottom: 20px;
   text-align: center;
+  font-size: 2em;
+  color: var(--blanco);
 }
 
 .book-card {
   display: inline-block;
   background: linear-gradient(to bottom, var(--azul-vibrante), var(--morado-oscuro));
-  color: white;
-  border-radius: 10px;
-  padding: 15px;
-  width: 200px;
-  margin: 10px;
+  color: var(--blanco);
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  margin: 15px;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .book-card:hover {
@@ -114,17 +128,19 @@ main {
 .book-card img {
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  height: 200px;
+  object-fit: cover;
 }
 
 /* Footer */
 footer {
   background: var(--azul-medianoche);
-  color: var(--azul-claro);
+  color: var(--blanco);
   text-align: center;
-  padding: 10px;
-  margin-top: 30px;
-  font-size: 0.9em;
+  padding: 15px 0;
+  font-size: 1em;
+  margin-top: 40px;
 }
 
 footer a {
@@ -136,36 +152,42 @@ footer a:hover {
   text-decoration: underline;
 }
 
-    /* Estilo para el modal (ventana emergente) */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-    }    
-    .modal-content {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      width: 300px;
-      text-align: center;
-    }
-    
-    button.cancel {
-      background-color: #ccc;
-      color: #333;
-      margin-left: 10px;
-    }
-    
-    button#confirmDeleteBtn {
-      background-color: #e74c3c;
-      color: #fff;
-    }    
+/* Estilo para el modal (ventana emergente) */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--blanco);
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  text-align: center;
+}
+
+button.cancel {
+  background-color: #ccc;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button#confirmDeleteBtn {
+  background-color: #e74c3c;
+  color: var(--blanco);
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
 
 /* Media Queries para dispositivos pequeños y medianos */
 
@@ -185,7 +207,7 @@ footer a:hover {
   }
 
   .book-card {
-    width: 220px;
+    width: 240px;
   }
 }
 
