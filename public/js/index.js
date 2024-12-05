@@ -6,11 +6,11 @@ function redirectTo(page) {
 // Verificar si el usuario está autenticado al cargar la página
 function checkAuthentication() {
   const token = localStorage.getItem('token'); // Suponiendo que guardas el token en localStorage
-  const profileButton = document.getElementById('perfil-btn');
-  const loginButton = document.getElementById('login-btn');
+  const profileButton = document.querySelector('button.cta[onclick*="redirectTo(\'perfil.html\')"]');
+  const loginButton = document.querySelector('.login-btn');
 
+  // Si el token existe, el usuario está autenticado
   if (token) {
-    // Si el token existe, el usuario está autenticado
     profileButton.style.display = 'block';  // Mostrar botón de perfil
     loginButton.style.display = 'none'; // Ocultar botón de inicio de sesión
   } else {
