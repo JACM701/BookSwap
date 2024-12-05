@@ -1,11 +1,8 @@
-//User
-// Verificar token y cargar perfil
 document.addEventListener("DOMContentLoaded", async () => {
     const token = localStorage.getItem("token");
   
     if (!token) {
-      alert("No estás autenticado. Redirigiendo al login...");
-      window.location.href = "login.html";
+      alert("⚠️ No se encontró un token. Asegúrate de haber iniciado sesión.");
       return;
     }
   
@@ -13,33 +10,33 @@ document.addEventListener("DOMContentLoaded", async () => {
       const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/profile", {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${token}`, // Incluye el token en el encabezado
+          "Authorization": `Bearer ${token}`,
         },
       });
   
-      const data = await response.json();
-  
-      if (response.ok) {
-        document.getElementById("user-name").textContent = data.name;
-        document.getElementById("user-email").textContent = data.email;
-      } else {
-        alert(data.message || "Hubo un problema al obtener tu perfil. Por favor, inicia sesión nuevamente.");
-        localStorage.removeItem("token"); // Limpia el token inválido
-        window.location.href = "login.html";
+      if (!response.ok) {
+        alert(`❌ Error al cargar el perfil: ${response.statusText}`);
+        return;
       }
+  
+      const data = await response.json();
+      document.getElementById("username").textContent = data.name;
+      document.getElementById("email").textContent = data.email;
+  
+      // Cargar los libros del usuario
+      await getBooks();
     } catch (error) {
-      alert("Error al cargar el perfil. Por favor, inténtalo más tarde.");
+      alert("❌ Error de conexión al cargar el perfil.");
       console.error("Error:", error);
     }
   });
-  
 
-
-// Obtener los libros del usuario
-export async function getBooks() {
+  async function getBooks() {
     const token = localStorage.getItem("token");
+  
     if (!token) {
-      window.location.href = "login.html"; // Redirigir si no está autenticado
+      alert("⚠️ No se encontró un token.");
+      return;
     }
   
     try {
@@ -50,58 +47,89 @@ export async function getBooks() {
       });
   
       if (!response.ok) {
-        throw new Error('No se pudo obtener los libros');
+        alert(`❌ Error al cargar los libros: ${response.statusText}`);
+        return;
       }
   
       const books = await response.json();
       displayBooks(books);
     } catch (error) {
+      alert("❌ Error al obtener los libros.");
       console.error("Error:", error);
     }
   }
   
-  // Mostrar los libros en el perfil
-  function displayBooks(books) {
-    const booksList = document.getElementById("book-list");
-    booksList.innerHTML = ""; // Limpiar lista antes de agregar
+  document.getElementById("addBookForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
   
-    books.forEach((book) => {
-      const bookDiv = document.createElement("div");
-      bookDiv.classList.add("book-item");
-      bookDiv.innerHTML = `
-        <h4>${book.title} by ${book.author}</h4>
-        <p>${book.genre}</p>
-        <p>${book.description}</p>
-        <img src="${book.imageUrl}" alt="Book image" width="100">
-        <button onclick="editBook('${book._id}')">Editar</button>
-        <button onclick="deleteBook('${book._id}')">Eliminar</button>
-      `;
-      booksList.appendChild(bookDiv);
-    });
-  }
-  
-  // Editar un libro
-  export async function editBook(bookId) {
     const token = localStorage.getItem("token");
+    if (!token) {
+      alert("⚠️ No estás autenticado.");
+      return;
+    }
+  
+    const newBook = {
+      title: document.getElementById("title").value,
+      author: document.getElementById("author").value,
+      genre: document.getElementById("genre").value,
+      description: document.getElementById("description").value,
+      imageUrl: document.getElementById("imageUrl").value,
+    };
+  
+    try {
+      const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(newBook),
+      });
+  
+      if (!response.ok) {
+        alert(`❌ Error al agregar el libro: ${response.statusText}`);
+        return;
+      }
+  
+      alert("✅ Libro añadido con éxito.");
+      const addedBook = await response.json();
+      appendBookToList(addedBook);
+    } catch (error) {
+      alert("❌ Error al agregar el libro.");
+      console.error("Error:", error);
+    }
+  });
+  
+  async function editBook(bookId) {
+    const token = localStorage.getItem("token");
+  
+    if (!token) {
+      alert("⚠️ No estás autenticado.");
+      return;
+    }
+  
     try {
       const response = await fetch(`https://bookswap-w7ze.onrender.com/api/books/${bookId}`, {
         headers: {
           "Authorization": `Bearer ${token}`,
         },
       });
+  
+      if (!response.ok) {
+        alert(`❌ Error al obtener los datos del libro: ${response.statusText}`);
+        return;
+      }
+  
       const book = await response.json();
   
-      // Rellenar el formulario del modal con los datos del libro
       document.getElementById("editTitle").value = book.title;
       document.getElementById("editAuthor").value = book.author;
       document.getElementById("editGenre").value = book.genre;
       document.getElementById("editDescription").value = book.description;
       document.getElementById("editImageUrl").value = book.imageUrl;
   
-      // Abrir el modal
       document.getElementById("editBookModal").style.display = "flex";
   
-      // Guardar cambios
       document.getElementById("editBookForm").onsubmit = async (e) => {
         e.preventDefault();
   
@@ -123,24 +151,32 @@ export async function getBooks() {
             body: JSON.stringify(updatedBook),
           });
   
-          if (updateResponse.ok) {
-            alert("Libro actualizado con éxito");
-            window.location.reload();
-          } else {
-            alert("Error al actualizar el libro");
+          if (!updateResponse.ok) {
+            alert(`❌ Error al actualizar el libro: ${updateResponse.statusText}`);
+            return;
           }
+  
+          alert("✅ Libro actualizado con éxito.");
+          document.getElementById("editBookModal").style.display = "none";
+          await getBooks();
         } catch (error) {
+          alert("❌ Error al actualizar el libro.");
           console.error("Error:", error);
         }
       };
     } catch (error) {
+      alert("❌ Error al obtener el libro.");
       console.error("Error:", error);
     }
   }
-  
-  // Eliminar un libro
-  export async function deleteBook(bookId) {
+
+  async function deleteBook(bookId) {
     const token = localStorage.getItem("token");
+  
+    if (!token) {
+      alert("⚠️ No estás autenticado.");
+      return;
+    }
   
     try {
       const response = await fetch(`https://bookswap-w7ze.onrender.com/api/books/${bookId}`, {
@@ -150,56 +186,56 @@ export async function getBooks() {
         },
       });
   
-      if (response.ok) {
-        alert("Libro eliminado con éxito");
-        window.location.reload(); // Recargar para reflejar los cambios
-      } else {
-        alert("Error al eliminar el libro");
+      if (!response.ok) {
+        alert(`❌ Error al eliminar el libro: ${response.statusText}`);
+        return;
       }
+  
+      alert("✅ Libro eliminado con éxito.");
+      await getBooks();
     } catch (error) {
+      alert("❌ Error al eliminar el libro.");
       console.error("Error:", error);
     }
   }
   
-  // Cerrar el modal
-  export function closeModal() {
-    document.getElementById("editBookModal").style.display = "none";
+  function displayBooks(books) {
+    const bookList = document.getElementById("book-list");
+    bookList.innerHTML = ""; // Limpiamos la lista antes de agregar libros
+  
+    books.forEach(book => {
+      const bookElement = document.createElement("div");
+      bookElement.classList.add("book-item");
+      bookElement.innerHTML = `
+        <h4>${book.title}</h4>
+        <p><strong>Autor:</strong> ${book.author}</p>
+        <p><strong>Género:</strong> ${book.genre}</p>
+        <p>${book.description}</p>
+        <img src="${book.imageUrl}" alt="Imagen de ${book.title}" />
+        <button class="edit-btn" onclick="editBook('${book._id}')">Editar</button>
+        <button class="delete-btn" onclick="openDeleteModal('${book._id}')">Eliminar</button>
+      `;
+  
+      bookList.appendChild(bookElement);
+    });
   }
   
-  // Añadir un nuevo libro
-  export async function addBook() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "login.html"; // Redirigir si no está autenticado
-    }
+  // Abrir el modal de confirmación de eliminación
+  function openDeleteModal(bookId) {
+    const deleteModal = document.getElementById("deleteBookModal");
+    deleteModal.style.display = "flex";
   
-    // Obtener los valores del formulario de nuevo libro
-    const newBook = {
-      title: document.getElementById("newTitle").value,
-      author: document.getElementById("newAuthor").value,
-      genre: document.getElementById("newGenre").value,
-      description: document.getElementById("newDescription").value,
-      imageUrl: document.getElementById("newImageUrl").value,
+    // Agregar el evento al botón de confirmar eliminación
+    const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+    confirmDeleteBtn.onclick = async () => {
+      await deleteBook(bookId); // Llamar a la función para eliminar el libro
+      closeModal();
     };
+  }
   
-    try {
-      const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify(newBook),
-      });
-  
-      if (response.ok) {
-        alert("Libro añadido con éxito");
-        window.location.reload(); // Recargar para reflejar el libro recién añadido
-      } else {
-        alert("Error al añadir el libro");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+  // Cerrar todos los modales
+  function closeModal() {
+    const modals = document.querySelectorAll(".modal");
+    modals.forEach(modal => (modal.style.display = "none"));
   }
   
