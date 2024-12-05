@@ -4,13 +4,56 @@ function redirectTo(page) {
   window.location.href = page;
 }
 
-document.getElementById("search-form").addEventListener("submit", async function(event) {
-  event.preventDefault();
-  const query = document.getElementById("search-query").value;
-  const response = await fetch(`/books?query=${query}`);
-  const books = await response.json();
-  // Mostrar los libros en el frontend
+
+//Funcionamiento de buscar
+document.getElementById("search-form").addEventListener("submit", async function (event) {
+  event.preventDefault(); // Evitar recargar la página
+
+  const query = document.getElementById("search-query").value.trim();
+  if (!query) {
+    alert("Por favor, ingresa un término de búsqueda.");
+    return;
+  }
+
+  try {
+    // Realiza la búsqueda en tu API
+    const response = await fetch(`https://bookswap-w7ze.onrender.com/api/search?query=${query}`);
+    const data = await response.json();
+
+    if (data && data.books.length > 0) {
+      // Lógica para mostrar resultados en la página actual
+      mostrarResultados(data.books);
+    } else {
+      alert("No se encontraron resultados para tu búsqueda.");
+    }
+  } catch (error) {
+    console.error("Error al realizar la búsqueda:", error);
+    alert("Ocurrió un error al buscar libros. Por favor, intenta de nuevo.");
+  }
 });
+
+// Función para mostrar resultados en la página
+function mostrarResultados(books) {
+  const resultadosContainer = document.getElementById("resultados-container");
+  resultadosContainer.innerHTML = ""; // Limpiar resultados previos
+
+  books.forEach((book) => {
+    const bookElement = document.createElement("div");
+    bookElement.classList.add("book-item");
+    bookElement.innerHTML = `
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <button onclick="verDetalleLibro('${book._id}')">Ver Detalle</button>
+    `;
+    resultadosContainer.appendChild(bookElement);
+  });
+}
+
+// Función para ver detalle de un libro
+function verDetalleLibro(bookId) {
+  window.location.href = `detalle-libro.html?id=${bookId}`;
+}
+
 
 /* AQUI abajo estaba la logica de sanchez anterior Que era basica sin usar DB
 // Manejo de la búsqueda en la barra de búsqueda en la sección hero
