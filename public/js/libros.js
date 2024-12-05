@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   
     if (!token) {
       alert("⚠️ No se encontró un token. Asegúrate de haber iniciado sesión.");
+      window.location.href = "/login.html"; // Redirige si no hay token
       return;
     }
   
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error:", error);
     }
   });
-
+  
   async function getBooks() {
     const token = localStorage.getItem("token");
   
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   
       if (!response.ok) {
-        alert(`❌ Error al cargar los libros: ${response.statusText}`);
+        alert(`❌ Error al cargar los libros recargue la pagina: ${response.statusText}`);
         return;
       }
   
@@ -169,7 +170,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error:", error);
     }
   }
-
+  
   async function deleteBook(bookId) {
     const token = localStorage.getItem("token");
   
