@@ -217,6 +217,7 @@ footer a:hover {
   text-decoration: underline;
 }
 
+
 /* Estilo para el modal (ventana emergente) */
 .modal {
   display: none;
@@ -325,5 +326,10 @@ button#confirmDeleteBtn {
 
   .book-card img {
     height: 150px;
+    object-fit: cover;
+  }
+
+  .profile-details {
+    padding: 15px;
   }
 }
