@@ -26,13 +26,19 @@ document.getElementById("btnCerrarSesion").addEventListener("click", () => {
 // Función para cargar libros desde la API
 function fetchBooks() {
   fetch('https://api-bookswap.onrender.com/api/books') // Cambia por tu URL si es necesario
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('No se pudo cargar los libros');
+      }
+      return response.json();
+    })
     .then(data => {
       allBooks = data; // Almacenar todos los libros
       displayBooks(allBooks); // Mostrar todos los libros al inicio
     })
     .catch(error => {
       console.error('Error al cargar los libros:', error);
+      alert('Error al cargar los libros. Por favor, inténtalo nuevamente.');
     });
 }
 
@@ -90,4 +96,4 @@ function filterBooksByGenre(genre) {
 }
 
 // Llamada inicial para cargar los libros
-fetchBooks();
+fetchBooks(); 
