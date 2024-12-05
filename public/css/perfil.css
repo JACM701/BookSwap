@@ -9,6 +9,11 @@
   --lila-pastel: #CBA2EA;
   --morado-oscuro: #3F3381;
   --azul-medianoche: #1D1F5A;
+  --gris-claro: #D3D3D3;
+  --gris-medio: #A9A9A9;
+  --gris-oscuro: #696969;
+  --blanco: #FFFFFF;
+  --negro: #000000;
 }
 
 /* Estilo general */
@@ -16,13 +21,13 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
-  color: var(--azul-claro);
+  color: var(--gris-claro); /* Cambié el color del texto a gris claro */
   padding: 0;
   box-sizing: border-box;
 }
 
 h1, h2, h3, h4 {
-  color: var(--azul-claro);
+  color: var(--blanco); /* Cambié los títulos a blanco para mejor contraste */
 }
 
 /* Header */
@@ -47,7 +52,7 @@ header nav {
 
 header button.cta {
   background: linear-gradient(to right, var(--azul-vibrante), var(--azul-claro));
-  color: white;
+  color: var(--blanco);
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -65,7 +70,7 @@ header button.back-btn {
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 5px;
-  color: var(--azul-claro);
+  color: var(--blanco);
 }
 
 /* Main Content */
@@ -86,7 +91,7 @@ main {
   background: linear-gradient(to right, var(--azul-profundo), var(--morado-oscuro));
   padding: 20px;
   border-radius: 10px;
-  color: var(--azul-claro);
+  color: var(--gris-claro); /* Cambié el texto de la sección de perfil a gris claro */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
@@ -96,7 +101,7 @@ main {
 }
 
 .profile-details span {
-  color: var(--azul-claro);
+  color: var(--blanco);
   font-weight: bold;
 }
 
@@ -116,10 +121,10 @@ form input,
 form textarea {
   padding: 12px;
   font-size: 1rem;
-  border: 1px solid var(--azul-claro);
+  border: 1px solid var(--gris-medio); /* Cambié el borde a gris */
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.2);
-  color: var(--azul-claro);
+  color: var(--blanco); /* Cambié el texto dentro del formulario a blanco */
   margin-bottom: 15px;
 }
 
@@ -170,11 +175,12 @@ form button:hover {
 .book-item h4 {
   font-size: 1.2em;
   margin: 8px 0;
+  color: var(--gris-oscuro); /* Cambié el color del título del libro a gris oscuro */
 }
 
 .book-item p {
   font-size: 0.9em;
-  color: #555;
+  color: var(--gris-medio); /* Cambié el color del texto descriptivo del libro */
   margin: 4px 0;
 }
 
@@ -195,7 +201,7 @@ form button:hover {
 /* Footer */
 footer {
   background: var(--azul-medianoche);
-  color: var(--azul-claro);
+  color: var(--gris-claro);
   text-align: center;
   padding: 15px;
   margin-top: 40px;
