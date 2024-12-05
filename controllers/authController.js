@@ -11,7 +11,7 @@ exports.register = async (req, res) => {
     const user = new User({ name, email, password });
     await user.save();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.status(201).json({ token, user });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -27,7 +27,7 @@ exports.login = async (req, res) => {
       return res.status(400).json({ message: 'Credenciales incorrectas' });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.status(200).json({ token, user });
   } catch (error) {
     res.status(500).json({ message: error.message });

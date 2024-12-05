@@ -2,83 +2,6 @@
 function redirectTo(page) {
   window.location.href = page;
 }
-
-// --- FUNCIONES PARA FORMULARIOS ---
-const loginForm = document.getElementById("login-form");
-
-loginForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      localStorage.setItem("token", data.token);
-      window.location.href = "perfil.html"; // Redirigir a la página de perfil
-    } else {
-      alert(data.message); // Mostrar mensaje de error
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-});
-
-//Registro
-const registroForm = document.getElementById("register-form");
-
-registroForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirm-password").value;
-
-  // Verifica que las contraseñas coincidan
-  if (password !== confirmPassword) {
-    alert("Las contraseñas no coinciden.");
-    return;
-  }
-
-  // Verifica que la contraseña tenga al menos 6 caracteres
-  if (password.length < 6) {
-    alert("La contraseña debe tener al menos 6 caracteres.");
-    return;
-  }
-
-  try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, email, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert("Registro exitoso. Ahora puedes iniciar sesión.");
-      window.location.href = "login.html"; // Redirigir a login
-    } else {
-      alert(data.message); // Mostrar mensaje de error
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-});
-
 // --- FUNCIONES DE NAVEGACIÓN ---
 
 // Función para mostrar mensajes de alerta cuando el usuario navega por el sitio
@@ -115,14 +38,13 @@ document.querySelectorAll('footer a').forEach(function(link) {
 });
 
 // --- FUNCIONES PARA LIBROS ---
-
-const token = localStorage.getItem("token");
-if (!token) {
-  window.location.href = "login.html"; // Redirigir si no está autenticado
-}
-
 // Obtener los libros del usuario
 async function getBooks() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "login.html"; // Redirigir si no está autenticado
+  }
+
   try {
     const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
       headers: {
@@ -139,52 +61,109 @@ async function getBooks() {
 
 // Mostrar los libros en el perfil
 function displayBooks(books) {
-  const booksList = document.getElementById("booksList");
+  const booksList = document.getElementById("book-list");
   booksList.innerHTML = ""; // Limpiar lista antes de agregar
 
   books.forEach((book) => {
-    const li = document.createElement("li");
-    li.textContent = `${book.title} by ${book.author}`;
-    booksList.appendChild(li);
+    const bookDiv = document.createElement("div");
+    bookDiv.classList.add("book-item");
+    bookDiv.innerHTML = `
+      <h4>${book.title} by ${book.author}</h4>
+      <p>${book.genre}</p>
+      <p>${book.description}</p>
+      <img src="${book.imageUrl}" alt="Book image" width="100">
+      <button onclick="editBook(${book._id})">Editar</button>
+      <button onclick="deleteBook(${book._id})">Eliminar</button>
+    `;
+    booksList.appendChild(bookDiv);
   });
 }
 
-// Llamar a getBooks para cargar los libros
-getBooks();
+// Editar un libro
+async function editBook(bookId) {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`https://bookswap-w7ze.onrender.com/api/books/${bookId}`, {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+    const book = await response.json();
 
-//Agragr libros desde ID
-const addBookForm = document.getElementById("addBookForm");
+    // Rellenar el formulario del modal con los datos del libro
+    document.getElementById("editTitle").value = book.title;
+    document.getElementById("editAuthor").value = book.author;
+    document.getElementById("editGenre").value = book.genre;
+    document.getElementById("editDescription").value = book.description;
+    document.getElementById("editImageUrl").value = book.imageUrl;
 
-  addBookForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Abrir el modal
+    document.getElementById("editBookModal").style.display = "flex";
 
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const genre = document.getElementById("genre").value;
-    const description = document.getElementById("description").value;
-    const imageUrl = document.getElementById("imageUrl").value;
+    // Guardar cambios
+    document.getElementById("editBookForm").onsubmit = async (e) => {
+      e.preventDefault();
 
-    const token = localStorage.getItem("token");
+      const updatedBook = {
+        title: document.getElementById("editTitle").value,
+        author: document.getElementById("editAuthor").value,
+        genre: document.getElementById("editGenre").value,
+        description: document.getElementById("editDescription").value,
+        imageUrl: document.getElementById("editImageUrl").value,
+      };
 
-    try {
-      const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-        body: JSON.stringify({ title, author, genre, description, imageUrl }),
-      });
+      try {
+        const updateResponse = await fetch(`https://bookswap-w7ze.onrender.com/api/books/${bookId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+          body: JSON.stringify(updatedBook),
+        });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Libro agregado con éxito");
-        window.location.reload(); // Recargar la página para mostrar el libro agregado
-      } else {
-        alert(data.message);
+        if (updateResponse.ok) {
+          alert("Libro actualizado con éxito");
+          window.location.reload();
+        } else {
+          alert("Error al actualizar el libro");
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
+    };
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+// Eliminar un libro
+async function deleteBook(bookId) {
+  const token = localStorage.getItem("token");
+
+  try {
+    const response = await fetch(`https://bookswap-w7ze.onrender.com/api/books/${bookId}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    });
+
+    if (response.ok) {
+      alert("Libro eliminado con éxito");
+      window.location.reload(); // Recargar para reflejar los cambios
+    } else {
+      alert("Error al eliminar el libro");
     }
-  });
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+// Cerrar el modal
+function closeModal() {
+  document.getElementById("editBookModal").style.display = "none";
+}
+
+// Llamar a getBooks para cargar los libros al cargar la página
+getBooks();

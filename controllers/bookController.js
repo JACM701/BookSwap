@@ -40,6 +40,17 @@ exports.getBooks = async (req, res) => {
   }
 };
 
+// Obtener libros del usuario autenticado
+exports.getUserBooks = async (req, res) => {
+  try {
+    const userId = req.user.id; // ID del usuario autenticado
+    const books = await Book.find({ user: userId }).populate('user', 'name email'); // Filtrar por usuario
+    res.status(200).json(books);
+  } catch (error) {
+    res.status(500).json({ message: 'Error al obtener los libros del usuario' });
+  }
+};
+
 // Buscar libros (título o autor)
 exports.searchBooks = async (req, res) => {
   const { query } = req.query; // Obtenemos el término de búsqueda

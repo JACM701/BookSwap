@@ -41,20 +41,16 @@
         </svg>
       </button>
     </nav>
-    <button class="cta login-btn" onclick="redirectTo('login.html')">
-      <span>Iniciar Sesión</span>
-      <svg width="15px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
+    <button class="cta back-btn" onclick="redirectTo('index.html')">
+      <span>Volver</span>
     </button>
   </header>
 
   <main class="profile-content">
     <h2>Mi Perfil</h2>
     <div class="profile-details">
-      <p>Nombre de Usuario: <span>NombreUsuario</span></p>
-      <p>Email: <span>usuario@example.com</span></p>
+      <p>Nombre de Usuario: <span id="username"></span></p>
+      <p>Email: <span id="email"></span></p>
       <!-- Más detalles de usuario -->
       <h3>Agregar Libros</h3>
       <form id="addBookForm">
@@ -65,22 +61,34 @@
         <input type="text" id="imageUrl" placeholder="URL de imagen" required />
         <button type="submit">Agregar Libro</button>
       </form>
-      
     </div>
+
     <section class="user-books">
       <h3>Mis Libros</h3>
-      <div class="book-card">
-        <img src="img/El Jardín De Las Mariposas.jpg" alt="Libro 1">
-        <h4>El Jardin De Las Mariposas</h4>
-        <p>Dot Hutchison</p>
-      </div>
-      <!-- Más libros -->
+      <div id="book-list"></div> <!-- Aquí aparecerán los libros agregados -->
     </section>
   </main>
 
   <footer>
     <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
   </footer>
+
+
+  <!-- Modal para editar el libro -->
+  <div id="editBookModal" class="modal">
+    <div class="modal-content">
+      <h3>Editar Libro</h3>
+      <form id="editBookForm">
+        <input type="text" id="editTitle" placeholder="Título" required />
+        <input type="text" id="editAuthor" placeholder="Autor" required />
+        <input type="text" id="editGenre" placeholder="Género" required />
+        <textarea id="editDescription" placeholder="Descripción"></textarea>
+        <input type="text" id="editImageUrl" placeholder="URL de imagen" required />
+        <button type="submit">Guardar Cambios</button>
+        <button type="button" class="cancel" onclick="closeModal()">Cancelar</button>
+      </form>
+    </div>
+  </div>
 
   <script src="js/script.js"></script>
 </body>
