@@ -15,6 +15,7 @@ header {
   padding: 10px 20px;
   background: linear-gradient(90deg, #1D1F5A, #3F3381);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;  /* Permite que los elementos se ajusten si es necesario */
 }
 
 header .logo-container h1 {
@@ -25,6 +26,8 @@ header .logo-container h1 {
 header nav {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;  /* Permite que los botones se ajusten en pantallas más pequeñas */
+  justify-content: center;  /* Centra los botones si se apilan */
 }
 
 header .cta {
@@ -216,4 +219,35 @@ button {
 
 button:hover {
   background: #91D2F4;
+}
+
+/* Media queries para pantallas más pequeñas */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;  /* Cambiar la dirección de los elementos a columna en pantallas pequeñas */
+    align-items: center;  /* Centra los elementos */
+  }
+
+  header .logo-container h1 {
+    margin-bottom: 10px;  /* Ajusta el espacio entre el logo y los botones */
+  }
+
+  header nav {
+    justify-content: center;  /* Centra los botones */
+    gap: 10px;  /* Reduce el espacio entre los botones */
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px;  /* Ajusta el padding */
+  }
+
+  header nav {
+    gap: 8px;  /* Ajusta aún más el espacio entre los botones */
+  }
+
+  header .cta {
+    padding: 10px 20px;  /* Aumenta el tamaño del botón para pantallas más pequeñas */
+  }
 }

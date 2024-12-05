@@ -16,15 +16,15 @@ body {
   margin: 0;
   font-family: 'Arial', sans-serif;
   background: linear-gradient(to bottom, var(--azul-oscuro), var(--azul-profundo));
-  color: white; /* Cambiado a blanco */
+  color: white;
 }
 
 h1, h2, h3, h4 {
-  color: white; /* Cambiado a blanco */
+  color: white;
 }
 
 p {
-  color: white; /* Cambiado a blanco */
+  color: white;
 }
 
 /* Header */
@@ -39,7 +39,6 @@ header {
 
 header .logo-container h1 {
   font-size: 2rem;
-  color: white; /* Cambiado a blanco */
 }
 
 header nav {
@@ -80,21 +79,18 @@ main {
   font-size: 2.5rem;
   margin-bottom: 10px;
   text-align: center;
-  color: white; /* Cambiado a blanco */
 }
 
 .community-content p {
   text-align: center;
   margin-bottom: 30px;
   font-size: 1.2rem;
-  color: white; /* Cambiado a blanco */
 }
 
 section h3 {
   font-size: 1.8rem;
   margin-bottom: 20px;
   text-align: center;
-  color: white; /* Cambiado a blanco */
 }
 
 .forums .forum,
@@ -103,7 +99,7 @@ section h3 {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
-  color: white; /* Cambiado a blanco */
+  color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, background 0.3s ease;
 }
@@ -119,41 +115,51 @@ section h3 {
 .groups button,
 .comments button {
   background: linear-gradient(to right, var(--azul-vibrante), var(--lila-pastel));
-  color: white; /* Cambiado a blanco */
+  color: white;
   border: none;
   padding: 8px 18px;
   border-radius: 20px;
   font-weight: bold;
   cursor: pointer;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 15px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .forums button:hover,
 .groups button:hover,
 .comments button:hover {
-  background: linear-gradient(to right, var(--lila-pastel), var(--azul-claro));
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, var(--lila-pastel), var(--azul-vibrante));
   transform: scale(1.05);
 }
 
-/* Footer */
-footer {
-  background: var(--azul-medianoche);
-  color: white; /* Cambiado a blanco */
-  text-align: center;
-  padding: 15px;
-  font-size: 0.9rem;
-}
+/* Responsiveness */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-footer a {
-  color: white; /* Cambiado a blanco */
-  text-decoration: none;
-}
+  header nav {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 20px;
+  }
 
-footer a:hover {
-  text-decoration: underline;
+  header .cta {
+    margin-bottom: 10px;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  .community-content {
+    margin-top: 20px;
+  }
+
+  .forums,
+  .groups {
+    padding: 15px;
+  }
 }
