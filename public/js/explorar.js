@@ -96,7 +96,7 @@ function showModal(title, author, genre, description, image) {
   const modalButton = document.querySelector("#bookModal button");
   modalButton.textContent = "Pedir Información";
   modalButton.onclick = () => {
-      window.location.href = "https://app.flutterflow.io/share/bookswap-ell3b6?page=INICIO";
+      window.location.href = "https://app.flutterflow.io/share/bookswap-ell3b6";
   };
 
   document.getElementById("bookModal").style.display = "block";
@@ -118,6 +118,28 @@ function filterBooksByGenre(genre) {
     const filteredBooks = genre === 'Todos' ? allBooks : allBooks.filter(book => book.genre === genre);
     displayBooks(filteredBooks);
 }
+
+// Función para filtrar libros por título
+function searchBooks(query) {
+  // Filtrar los libros que contienen el texto de búsqueda en su título (sin importar mayúsculas/minúsculas)
+  const filteredBooks = allBooks.filter(book => book.title.toLowerCase().includes(query.toLowerCase()));
+  displayBooks(filteredBooks);
+}
+
+// Evento para manejar la búsqueda
+document.querySelector(".search-bar button").addEventListener("click", () => {
+  const query = document.querySelector(".search-bar input").value;
+  searchBooks(query); // Filtra los libros con la consulta ingresada
+});
+
+// También podemos permitir que la búsqueda funcione al presionar "Enter" en el campo de texto
+document.querySelector(".search-bar input").addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+      const query = document.querySelector(".search-bar input").value;
+      searchBooks(query); // Filtra los libros con la consulta ingresada
+  }
+});
+
 
 // Llamada inicial para cargar los libros
 fetchBooks();
