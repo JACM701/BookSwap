@@ -53,44 +53,60 @@ const books = [
 
 let filteredBooks = books;
 
+// Función para cargar libros desde la API
+function fetchBooks() {
+  fetch('https://api-bookswap.onrender.com/books')  // Asegúrate de que esta URL sea la correcta para tu API
+    .then(response => response.json())
+    .then(data => {
+      // Mostrar los libros después de obtenerlos
+      displayBooks(data);
+    })
+    .catch(error => {
+      console.error('Error al cargar los libros:', error);
+    });
+}
+
+// Función para mostrar los libros en la página
 function displayBooks(booksToDisplay) {
-const bookCardsContainer = document.getElementById("bookCards");
-bookCardsContainer.innerHTML = "";
+  const bookCardsContainer = document.getElementById("bookCards");
+  bookCardsContainer.innerHTML = ""; // Limpiar los libros previos
 
-booksToDisplay.forEach(book => {
-  const bookCard = document.createElement("div");
-  bookCard.classList.add("book-card");
-  bookCard.innerHTML = `
-    <img src="${book.image}" alt="${book.title}">
-    <h3>${book.title}</h3>
-    <p>${book.author}</p>
-    <button onclick="showModal('${book.title}', '${book.author}', '${book.genre}', '${book.description}', '${book.image}')">Ver más</button>
-  `;
-  bookCardsContainer.appendChild(bookCard);
-});
+  booksToDisplay.forEach(book => {
+    const bookCard = document.createElement("div");
+    bookCard.classList.add("book-card");
+    bookCard.innerHTML = `
+      <img src="${book.image}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <button onclick="showModal('${book.title}', '${book.author}', '${book.genre}', '${book.description}', '${book.image}')">Ver más</button>
+    `;
+    bookCardsContainer.appendChild(bookCard);
+  });
 }
 
-function filterBooksByGenre(genre) {
-filteredBooks = genre === 'Todos' ? books : books.filter(book => book.genre === genre);
-displayBooks(filteredBooks);
-}
-
+// Función para mostrar el modal con más detalles del libro
 function showModal(title, author, genre, description, image) {
-document.getElementById("bookTitle").textContent = title;
-document.getElementById("bookAuthor").textContent = author;
-document.getElementById("bookGenre").textContent = genre;
-document.getElementById("bookDescription").textContent = description;
-document.getElementById("bookImage").src = image;
-document.getElementById("bookModal").style.display = "block";
+  document.getElementById("bookTitle").textContent = title;
+  document.getElementById("bookAuthor").textContent = author;
+  document.getElementById("bookGenre").textContent = genre;
+  document.getElementById("bookDescription").textContent = description;
+  document.getElementById("bookImage").src = image;
+  document.getElementById("bookModal").style.display = "block";
 }
 
+// Función para cerrar el modal
 function closeModal() {
-document.getElementById("bookModal").style.display = "none";
+  document.getElementById("bookModal").style.display = "none";
 }
 
-function interchangeBook() {
-alert("¡Intercambio realizado con éxito!");
+// Filtrar libros por género
+function filterBooksByGenre(genre) {
+  fetchBooks();  // Recargar todos los libros antes de filtrar
+  const filteredBooks = genre === 'Todos' ? books : books.filter(book => book.genre === genre);
+  displayBooks(filteredBooks);
 }
 
-// Mostrar todos los libros al cargar la página
-displayBooks(books);
+// Función que se ejecuta al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+  fetchBooks();  // Llamada para cargar los libros desde la API cuando la página cargue
+});
