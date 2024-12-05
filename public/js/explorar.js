@@ -55,7 +55,7 @@ let filteredBooks = books;
 
 // Función para cargar libros desde la API
 function fetchBooks() {
-  fetch('https://api-bookswap.onrender.com/books')  // Asegúrate de que esta URL sea la correcta para tu API
+  fetch('https://api-bookswap.onrender.com/api/books')  // Asegúrate de que esta URL sea la correcta para tu API
     .then(response => response.json())
     .then(data => {
       // Mostrar los libros después de obtenerlos
