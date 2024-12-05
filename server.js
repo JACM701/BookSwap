@@ -16,13 +16,13 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, process.env.UPLOAD_PATH || 'uploads')));
 
-// Sirve archivos estáticos desde la carpeta "public"
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Redirigir a login en lugar de enviar index.html
+// Redirige a login antes de servir archivos estáticos
 app.get('/', (req, res) => {
   res.redirect('/login.html'); // Redirige directamente a la página de login
 });
+
+// Luego de la redirección, sirve los archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Conexión a MongoDB
 mongoose
