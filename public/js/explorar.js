@@ -81,17 +81,25 @@ function displayBooks(booksToDisplay) {
 }
 
 // Función para mostrar el modal con más detalles del libro
+// Función para mostrar el modal con más detalles del libro
 function showModal(title, author, genre, description, image) {
-    document.getElementById("bookTitle").textContent = title;
-    document.getElementById("bookAuthor").textContent = author;
-    document.getElementById("bookGenre").textContent = genre;
-    document.getElementById("bookDescription").textContent = description;
+  document.getElementById("bookTitle").textContent = title;
+  document.getElementById("bookAuthor").textContent = author;
+  document.getElementById("bookGenre").textContent = genre;
+  document.getElementById("bookDescription").textContent = description;
 
-    // Manejo de imagen en el modal
-    const modalImage = image || "https://via.placeholder.com/150?text=Sin+imagen";
-    document.getElementById("bookImage").src = modalImage;
+  // Manejo de imagen en el modal
+  const modalImage = image || "https://via.placeholder.com/150?text=Sin+imagen";
+  document.getElementById("bookImage").src = modalImage;
 
-    document.getElementById("bookModal").style.display = "block";
+  // Cambiar el texto y el enlace del botón
+  const modalButton = document.querySelector("#bookModal button");
+  modalButton.textContent = "Pedir Información";
+  modalButton.onclick = () => {
+      window.location.href = "https://app.flutterflow.io/share/bookswap-ell3b6?page=INICIO";
+  };
+
+  document.getElementById("bookModal").style.display = "block";
 }
 
 // Función para cerrar el modal
