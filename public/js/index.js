@@ -1,11 +1,28 @@
 //public/js/index.js
+
 // Función para redirigir a otras páginas
 function redirectTo(page) {
   window.location.href = page;
 }
 
+// Verificar si el usuario está autenticado al cargar la página
+function checkAuthentication() {
+  const token = localStorage.getItem('token'); // Suponiendo que guardas el token en localStorage
+  const profileButton = document.querySelector('button.cta[onclick*="redirectTo(\'perfil.html\')"]');
+  const loginButton = document.querySelector('.login-btn');
 
-//Funcionamiento de buscar
+  if (token) {
+    // Si el token existe, el usuario está autenticado
+    profileButton.style.display = 'block';  // Mostrar botón de perfil
+    loginButton.style.display = 'none'; // Ocultar botón de inicio de sesión
+  } else {
+    // Si no hay token, el usuario no está autenticado
+    profileButton.style.display = 'none';  // Ocultar botón de perfil
+    loginButton.style.display = 'block';  // Mostrar botón de inicio de sesión
+  }
+}
+
+// Funcionamiento de buscar
 document.getElementById("search-form").addEventListener("submit", async function (event) {
   event.preventDefault(); // Evitar recargar la página
 
@@ -54,22 +71,6 @@ function verDetalleLibro(bookId) {
   window.location.href = `detalle-libro.html?id=${bookId}`;
 }
 
-
-/* AQUI abajo estaba la logica de sanchez anterior Que era basica sin usar DB
-// Manejo de la búsqueda en la barra de búsqueda en la sección hero
-document.querySelector('.search-form').addEventListener('submit', function(event) {
-  event.preventDefault();  // Evitar el comportamiento por defecto del formulario
-  const searchTerm = document.querySelector('.search-form input').value.trim().toLowerCase();
-  
-  if (searchTerm) {
-    // Aquí podrías redirigir a una página de resultados con la búsqueda realizada
-    window.location.href = `resultados.html?q=${searchTerm}`;
-  } else {
-    // Si el campo está vacío, muestra un mensaje o alerta
-    alert("Por favor, ingresa un término de búsqueda.");
-  }
-});
-*/
 // Manejo de la redirección para los botones de navegación en el header
 document.querySelectorAll('.cta').forEach(button => {
   button.addEventListener('click', function() {
@@ -128,3 +129,6 @@ document.querySelectorAll('.footer-links a').forEach(link => {
     }
   });
 });
+
+// Ejecutar la verificación de autenticación cuando se cargue la página
+document.addEventListener("DOMContentLoaded", checkAuthentication);
