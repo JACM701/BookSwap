@@ -4,7 +4,7 @@ const registerForm = document.getElementById("register-form");
 registerForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const username = document.getElementById("username").value;
+  const name = document.getElementById("uname").value; // Cambié el ID a "uname" para que coincida
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
@@ -27,7 +27,7 @@ registerForm.addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, email, password }),
+      body: JSON.stringify({ name, email, password }), // Enviar "name" en lugar de "username"
     });
 
     const data = await response.json();
