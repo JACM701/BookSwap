@@ -12,6 +12,11 @@ function redirectTo(page) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
   
+    if (!email || !password) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+  
     try {
       const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/login", {
         method: "POST",
@@ -24,12 +29,14 @@ function redirectTo(page) {
       const data = await response.json();
   
       if (response.ok) {
+        alert("Inicio de sesión exitoso. Redirigiendo a tu perfil...");
         localStorage.setItem("token", data.token);
         window.location.href = "perfil.html"; // Redirigir a la página de perfil
       } else {
-        alert(data.message); // Mostrar mensaje de error
+        alert(data.message || "Error en las credenciales. Por favor, verifica tus datos.");
       }
     } catch (error) {
+      alert("Ocurrió un error al iniciar sesión. Inténtalo nuevamente más tarde.");
       console.error("Error:", error);
     }
   });
