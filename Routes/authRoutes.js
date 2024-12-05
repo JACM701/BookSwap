@@ -1,5 +1,6 @@
 const express = require('express');
 const { register, login } = require('../controllers/authController');
+const protect = require('../middleware/protect'); // Verifica que la ruta sea correcta
 
 const router = express.Router();
 
