@@ -81,40 +81,34 @@ exports.searchBooks = async (req, res) => {
   }
 };
 
-/// Actualizar un libro
-const editBook = async (req, res) => {
-  const { bookId } = req.params;
-  const updatedBook = req.body;
-
+// Actualizar un libro
+exports.updateBook = async (req, res) => {
+  const { id } = req.params;
+  const { title, author, genre, description, imageUrl } = req.body;
   try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-      return res.status(401).json({ message: "No autorizado" });
-    }
+    const book = await Book.findById(id);
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const userId = decoded.id;
-
-    // Buscar el libro en la base de datos
-    const book = await Book.findById(bookId);
     if (!book) {
-      return res.status(404).json({ message: "Libro no encontrado" });
+      return res.status(404).json({ message: 'Libro no encontrado' });
     }
 
+    // Verificar que el usuario que intenta actualizar es el propietario
     // Comparar correctamente el userId del libro con el userId del token
-    // Usar `.toString()` para convertir los ObjectId a string
-    if (book.user.toString() !== userId) {
-      return res.status(403).json({ message: "No autorizado para actualizar este libro" });
+    if (book.user.toString() !== req.user.id) {
+      return res.status(401).json({ message: 'No autorizado para actualizar este libro' });
     }
 
-    // Actualizar el libro con los datos proporcionados
-    Object.assign(book, updatedBook);
-    await book.save();
+    // Actualizar los campos solo si se han proporcionado en la solicitud
+    book.title = title || book.title;
+    book.author = author || book.author;
+    book.genre = genre || book.genre;
+    book.description = description || book.description;
+    book.imageUrl = imageUrl || book.imageUrl;
 
-    return res.status(200).json(book);
+    const updatedBook = await book.save();
+    res.status(200).json(updatedBook);
   } catch (error) {
-    console.error(error);
-    return res.status(500).json({ message: "Error al actualizar el libro" });
+    res.status(500).json({ message: error.message });
   }
 };
 
