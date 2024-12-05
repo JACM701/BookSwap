@@ -25,7 +25,6 @@ header {
   padding: 15px 30px;
   background: linear-gradient(90deg, var(--color-azul-profundo), var(--color-azul-medianoche));
   color: var(--color-azul-claro);
-  position: relative;
 }
 
 /* Logo */
@@ -38,9 +37,9 @@ header .logo-container h1 {
 /* Navegación */
 nav {
   display: flex;
-  justify-content: center; /* Centra horizontalmente los botones */
-  align-items: center; /* Centra verticalmente los botones */
-  flex: 1; /* Expande el nav para ocupar espacio entre el logo y el botón de inicio de sesión */
+  justify-content: center;
+  align-items: center;
+  flex: 1;
   gap: 15px;
 }
 
@@ -52,9 +51,6 @@ nav button.cta {
   padding: 10px 20px;
   font-size: 0.9em;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: all 0.3s ease;
 }
 
@@ -65,9 +61,6 @@ nav button.cta:hover {
 
 /* Botón de "Iniciar Sesión" */
 header .login-btn {
-  position: absolute;
-  top: 15px;
-  right: 30px;
   background: linear-gradient(45deg, var(--color-morado-oscuro), var(--color-azul-vibrante));
   border: none;
   border-radius: 25px;
@@ -76,9 +69,6 @@ header .login-btn {
   font-size: 1em;
   font-weight: bold;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
@@ -95,6 +85,7 @@ main.login-content {
   justify-content: center;
   height: calc(100vh - 80px);
   text-align: center;
+  padding: 20px;
 }
 
 main.login-content h2 {
@@ -164,4 +155,57 @@ footer {
   background: linear-gradient(90deg, var(--color-azul-medianoche), var(--color-azul-profundo));
   color: var(--color-azul-claro);
   font-size: 0.9em;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header .login-btn {
+    margin-top: 10px;
+  }
+
+  main.login-content {
+    padding: 15px;
+  }
+
+  main.login-content h2 {
+    font-size: 1.5em;
+  }
+
+  main.login-content form {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 10px 5px;
+  }
+
+  header .logo-container h1 {
+    font-size: 1.4em;
+  }
+
+  main.login-content h2 {
+    font-size: 1.2em;
+  }
+
+  main.login-content form {
+    gap: 10px;
+  }
+
+  main.login-content form button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
 }

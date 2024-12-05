@@ -81,7 +81,6 @@ function displayBooks(booksToDisplay) {
 }
 
 // Función para mostrar el modal con más detalles del libro
-// Función para mostrar el modal con más detalles del libro
 function showModal(title, author, genre, description, image) {
   document.getElementById("bookTitle").textContent = title;
   document.getElementById("bookAuthor").textContent = author;
@@ -139,7 +138,6 @@ document.querySelector(".search-bar input").addEventListener("keyup", (event) =>
       searchBooks(query); // Filtra los libros con la consulta ingresada
   }
 });
-
 
 // Llamada inicial para cargar los libros
 fetchBooks();
