@@ -25,7 +25,7 @@ document.getElementById("btnCerrarSesion").addEventListener("click", () => {
 
 // Función para cargar libros desde la API
 function fetchBooks() {
-  fetch('https://api-bookswap.onrender.com/api/books') // Cambia por tu URL si es necesario
+  fetch('https://bookswap-w7ze.onrender.com/api/books') // Cambia por tu URL si es necesario
     .then(response => {
       if (!response.ok) {
         throw new Error('No se pudo cargar los libros');
