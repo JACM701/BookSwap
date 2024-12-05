@@ -1,5 +1,3 @@
-//public/js/index.js
-
 // Función para redirigir a otras páginas
 function redirectTo(page) {
   window.location.href = page;
@@ -8,8 +6,8 @@ function redirectTo(page) {
 // Verificar si el usuario está autenticado al cargar la página
 function checkAuthentication() {
   const token = localStorage.getItem('token'); // Suponiendo que guardas el token en localStorage
-  const profileButton = document.querySelector('button.cta[onclick*="redirectTo(\'perfil.html\')"]');
-  const loginButton = document.querySelector('.login-btn');
+  const profileButton = document.getElementById('perfil-btn');
+  const loginButton = document.getElementById('login-btn');
 
   if (token) {
     // Si el token existe, el usuario está autenticado
@@ -70,65 +68,6 @@ function mostrarResultados(books) {
 function verDetalleLibro(bookId) {
   window.location.href = `detalle-libro.html?id=${bookId}`;
 }
-
-// Manejo de la redirección para los botones de navegación en el header
-document.querySelectorAll('.cta').forEach(button => {
-  button.addEventListener('click', function() {
-    const buttonText = button.querySelector('span').textContent.trim().toLowerCase();
-    
-    // Redirige según el texto del botón
-    switch (buttonText) {
-      case 'explorar libros':
-        redirectTo('explorar.html');
-        break;
-      case 'perfil':
-        redirectTo('perfil.html');
-        break;
-      case 'comunidad':
-        redirectTo('comunidad.html');
-        break;
-      case 'blog':
-        redirectTo('blog.html');
-        break;
-      case 'iniciar sesión':
-        redirectTo('login.html');
-        break;
-      case 'regístrate':
-        redirectTo('registro.html');
-        break;
-      default:
-        console.log("Botón no reconocido");
-    }
-  });
-});
-
-// Función para manejar el redireccionamiento de los botones de acción (cta) en la sección "Únete a nuestra comunidad"
-document.querySelector('.cta.button-primary').addEventListener('click', function() {
-  redirectTo('registro.html');
-});
-
-// Función para manejar la redirección de los enlaces en el footer
-document.querySelectorAll('.footer-links a').forEach(link => {
-  link.addEventListener('click', function(event) {
-    event.preventDefault();  // Evitar que el enlace se abra de forma predeterminada
-    const href = link.getAttribute('href');
-    
-    // Redirigir según el href del enlace
-    switch (href) {
-      case 'contacto.html':
-        redirectTo('contacto.html');
-        break;
-      case 'terminos.html':
-        redirectTo('terminos.html');
-        break;
-      case 'privacidad.html':
-        redirectTo('privacidad.html');
-        break;
-      default:
-        console.log("Enlace no reconocido");
-    }
-  });
-});
 
 // Ejecutar la verificación de autenticación cuando se cargue la página
 document.addEventListener("DOMContentLoaded", checkAuthentication);
