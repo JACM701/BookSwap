@@ -51,6 +51,12 @@ registroForm.addEventListener("submit", async (e) => {
     return;
   }
 
+  // Verifica que la contraseña tenga al menos 6 caracteres
+  if (password.length < 6) {
+    alert("La contraseña debe tener al menos 6 caracteres.");
+    return;
+  }
+
   try {
     const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/register", {
       method: "POST",

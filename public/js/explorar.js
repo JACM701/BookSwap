@@ -7,11 +7,11 @@ function redirectTo(page) {
   // Función para manejar la búsqueda de libros
   document.querySelector('.search-bar button').addEventListener('click', function() {
     const searchTerm = document.querySelector('.search-bar input').value.trim().toLowerCase();
-    
+      
     if (searchTerm) {
       // Filtramos las tarjetas de libros basándonos en el término de búsqueda
       const bookCards = document.querySelectorAll('.book-card');
-      
+        
       bookCards.forEach(card => {
         const title = card.querySelector('h4').textContent.toLowerCase();
         const author = card.querySelector('p').textContent.toLowerCase();
@@ -30,16 +30,12 @@ function redirectTo(page) {
         card.style.display = 'block';
       });
     }
-  });
+  });  
   
   // Opcional: Limpiar la búsqueda al hacer clic fuera del campo
   document.querySelector('.search-bar input').addEventListener('focus', function() {
     this.value = ''; // Limpiar el campo de búsqueda al hacer foco
   });
-
-
-
-  
 
 const books = [
   { title: "El Alquimista", author: "Paulo Coelho", genre: "Ficción", description: "Un viaje de autodescubrimiento...", image: "img/El Alquimista.jpg" },
