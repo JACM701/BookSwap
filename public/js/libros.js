@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
   
       if (!response.ok) {
-        alert(`❌ Error al cargar los libros recargue la pagina: ${response.statusText}`);
+        alert(`❌ Error al cargar los libros. Recargue la página: ${response.statusText}`);
         return;
       }
   
