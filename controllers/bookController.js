@@ -13,19 +13,31 @@ fs.readdir(modelsPath, (err, files) => {
 // Crear un libro
 exports.createBook = async (req, res) => {
   const { title, author, genre, description, imageUrl } = req.body;
+
+  // Validar los campos requeridos
+  if (!title || !author || !genre || !description || !imageUrl) {
+    return res.status(400).json({ message: 'Todos los campos son obligatorios' });
+  }
+
   try {
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ message: 'Usuario no autenticado' });
+    }
+
     const book = new Book({
       title,
       author,
       genre,
       description,
       imageUrl,
-      user: req.user.id,
+      user: req.user.id, // Asociar el libro al usuario autenticado
     });
+
     await book.save();
     res.status(201).json(book);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error('Error al crear un libro:', error); // Logging detallado
+    res.status(500).json({ message: 'Error interno del servidor' });
   }
 };
 
