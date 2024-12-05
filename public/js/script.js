@@ -1,5 +1,5 @@
 document.getElementById("btnInicio").addEventListener("click", () => {
-  window.location.href = "inicio.html";
+  window.location.href = "index.html";
 });
 
 document.getElementById("btnExplorar").addEventListener("click", () => {

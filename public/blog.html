@@ -5,87 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BookSwap - Blog</title>
   <link rel="stylesheet" href="css/blog.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
+<body class="bg-gradient-to-b from-blue-900 via-blue-800 to-purple-900 text-white">
+
+  <header class="flex justify-between items-center p-5 bg-blue-950 shadow-lg">
     <div class="logo-container">
-      <h1>BookSwap</h1>
+      <h1 class="text-2xl font-bold text-blue-300 transition-all transform hover:scale-105">BookSwap</h1>
     </div>
-    <nav>
-      <button class="cta" onclick="redirectTo('index.html')">
-        <span>Inicio</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('explorar.html')">
-        <span>Explorar libros</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('perfil.html')">
-        <span>Perfil</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('comunidad.html')">
-        <span>Comunidad</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
+    <nav class="flex gap-4">
+      <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md transition-all transform hover:scale-105" id="btnInicio">Inicio</button>
+      <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md transition-all transform hover:scale-105" id="btnExplorar">Explorar libros</button>
+      <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md transition-all transform hover:scale-105" id="btnPerfil">Perfil</button>
+      <button class="px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded-md transition-all transform hover:scale-105" id="btnComunidad">Comunidad</button>
     </nav>
-    <button class="cta login-btn" onclick="redirectTo('login.html')">
-      <span>Iniciar Sesión</span>
-      <svg width="15px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
+    <button class="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-md transition-all transform hover:scale-105" id="btnLogin" onclick="toggleSession()">
+      <span id="loginText">Cerrar sesión</span>
     </button>
   </header>
 
-  <main class="blog-content">
-    <h2>Blog</h2>
-    <section class="blog-grid">
-      <!-- Ejemplo de cuadro de blog -->
-      <article class="blog-card">
-        <img src="https://via.placeholder.com/300x200" alt="Imagen del blog">
-        <div class="blog-info">
-          <h3>Cómo encontrar tu próximo libro favorito</h3>
-          <p>Descubre consejos para explorar y elegir tu próxima gran lectura.</p>
-          <button class="cta" onclick="redirectTo('detalle-blog.html')">Leer más</button>
+  <main class="blog-content py-20">
+    <h2 class="text-4xl text-center font-extrabold mb-12">Blog</h2>
+    <section class="blog-grid grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto px-5">
+      <article class="blog-card bg-blue-800 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+        <img src="/public/img/libros-estanterias-default.jpg" alt="Imagen del blog" class="w-full h-48 object-cover rounded-t-lg">
+        <div class="blog-info p-4">
+          <h3 class="text-xl font-bold">Cómo encontrar tu próximo libro favorito</h3>
+          <p class="text-lg mt-2">Descubre consejos para explorar y elegir tu próxima gran lectura.</p>
+          <button class="cta bg-teal-500 hover:bg-teal-600 rounded-lg mt-4 py-2 px-4 transition-all" onclick="window.location.href='https://www.facebook.com/groups/ClubdeLectura/';">Leer más</button>
         </div>
       </article>
-      <article class="blog-card">
-        <img src="https://via.placeholder.com/300x200" alt="Imagen del blog">
-        <div class="blog-info">
-          <h3>Reseña: El arte de la lectura</h3>
-          <p>Una revisión de este inspirador libro que celebra el placer de leer.</p>
-          <button class="cta" onclick="redirectTo('detalle-blog.html')">Leer más</button>
+      <article class="blog-card bg-blue-800 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+        <img src="/public/img/Que-es-un-blog.png" alt="Imagen del blog" class="w-full h-48 object-cover rounded-t-lg">
+        <div class="blog-info p-4">
+          <h3 class="text-xl font-bold">Reseña: El arte de la lectura</h3>
+          <p class="text-lg mt-2">Una revisión de este inspirador libro que celebra el placer de leer.</p>
+          <button class="cta bg-teal-500 hover:bg-teal-600 rounded-lg mt-4 py-2 px-4 transition-all" onclick="window.location.href='https://www.facebook.com/groups/lectoresdebibliotecas/';">Leer más</button>
         </div>
       </article>
-      <article class="blog-card">
-        <img src="https://via.placeholder.com/300x200" alt="Imagen del blog">
-        <div class="blog-info">
-          <h3>10 consejos para leer más cada año</h3>
-          <p>Aumenta tu hábito de lectura con estos simples pero efectivos consejos.</p>
-          <button class="cta" onclick="redirectTo('detalle-blog.html')">Leer más</button>
+      <article class="blog-card bg-blue-800 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+        <img src="/public/img/image_content_23089855_20150329174536.jpg" alt="Imagen del blog" class="w-full h-48 object-cover rounded-t-lg">
+        <div class="blog-info p-4">
+          <h3 class="text-xl font-bold">10 consejos para leer más cada año</h3>
+          <p class="text-lg mt-2">Aumenta tu hábito de lectura con estos simples pero efectivos consejos.</p>
+          <button class="cta bg-teal-500 hover:bg-teal-600 rounded-lg mt-4 py-2 px-4 transition-all" onclick="window.location.href='https://www.facebook.com/groups/lectores/';">Leer más</button>
         </div>
       </article>
-      <!-- Agregar más cuadros de blog aquí -->
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
+  <footer class="text-center py-10 bg-blue-950">
+    <p class="text-blue-500">&copy; 2024 BookSwap | <a href="contacto.html" class="text-blue-400 hover:underline">Contacto</a> | <a href="terminos.html" class="text-blue-400 hover:underline">Términos de Uso</a> | <a href="privacidad.html" class="text-blue-400 hover:underline">Privacidad</a></p>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="js/Blog.js"></script>
 </body>
 </html>
