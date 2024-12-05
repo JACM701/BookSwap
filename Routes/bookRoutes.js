@@ -2,7 +2,7 @@ const express = require('express');
 const {
   createBook,
   getBooks,
-  getBookById,  // Asegúrate de importar la nueva función
+  getBookById,
   updateBook,
   deleteBook,
   searchBooks,

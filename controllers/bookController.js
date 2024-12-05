@@ -2,15 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const Book = require('../models/book'); // Asegúrate de importar el modelo aquí
 
-const modelsPath = path.join(__dirname, '../models');
-fs.readdir(modelsPath, (err, files) => {
-  if (err) {
-    console.error('Error al leer la carpeta models:', err);
-  } else {
-    console.log('Archivos en la carpeta models:', files);
-  }
-});
-
 // Crear un libro
 exports.createBook = async (req, res) => {
   const { title, author, genre, description, imageUrl } = req.body;
@@ -82,17 +73,15 @@ exports.searchBooks = async (req, res) => {
 };
 
 //Buscar libro ID
-const getBookById = async (req, res) => {
+exports.getBookById = async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
-    
     if (!book) {
-      return res.status(404).json({ message: "Libro no encontrado" });
+      return res.status(404).json({ message: 'Libro no encontrado' });
     }
-
     res.status(200).json(book);
   } catch (error) {
-    res.status(500).json({ message: "Error al obtener el libro", error: error.message });
+    res.status(500).json({ message: 'Error al obtener el libro', error: error.message });
   }
 };
 
