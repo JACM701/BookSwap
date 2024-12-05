@@ -62,6 +62,7 @@ function displayBooks(booksToDisplay) {
   // Agregar eventos a los botones "Ver más"
   document.querySelectorAll('.view-more').forEach(button => {
     button.addEventListener('click', (event) => {
+      event.preventDefault();  // Evitar la recarga de la página
       const { title, author, genre, description, image } = event.target.dataset;
       showModal(title, author, genre, description, image);
     });
@@ -74,10 +75,11 @@ function showModal(title, author, genre, description, image) {
   document.getElementById("bookAuthor").textContent = author;
   document.getElementById("bookGenre").textContent = genre;
   document.getElementById("bookDescription").textContent = description;
-  document.getElementById("bookImage").src = image;
+  document.getElementById("bookImage").src = image; // Usamos la imagen directamente
   document.getElementById("bookModal").style.display = "block";
 }
 
+// Función para cerrar el modal
 // Función para cerrar el modal
 function closeModal() {
   document.getElementById("bookModal").style.display = "none";
