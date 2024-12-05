@@ -33,3 +33,17 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+
+// Obtener el perfil del usuario
+exports.getProfile = async (req, res) => {
+  try {
+    const user = req.user; // Ya lo tenemos disponible en req.user gracias al middleware protect
+    res.status(200).json({
+      name: user.name,
+      email: user.email
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

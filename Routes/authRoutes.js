@@ -6,4 +6,7 @@ const router = express.Router();
 router.post('/register', register);
 router.post('/login', login);
 
+// Ruta para obtener el perfil del usuario autenticado
+router.get('/profile', protect, getProfile);
+
 module.exports = router;
