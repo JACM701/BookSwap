@@ -2,6 +2,7 @@ const express = require('express');
 const {
   createBook,
   getBooks,
+  getBookById,  // Asegúrate de importar la nueva función
   updateBook,
   deleteBook,
   searchBooks,
@@ -19,6 +20,7 @@ router.delete('/:id', protect, deleteBook); // Eliminar libro
 
 // Rutas públicas
 router.get('/', getBooks); // Obtener libros
+router.get('/:id', getBookById); // Obtener libro por ID
 router.get('/search', searchBooks); // Buscar libros
 
 module.exports = router;

@@ -81,6 +81,22 @@ exports.searchBooks = async (req, res) => {
   }
 };
 
+//Buscar libro ID
+const getBookById = async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    
+    if (!book) {
+      return res.status(404).json({ message: "Libro no encontrado" });
+    }
+
+    res.status(200).json(book);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener el libro", error: error.message });
+  }
+};
+
+
 // Actualizar un libro
 exports.updateBook = async (req, res) => {
   const { id } = req.params;
