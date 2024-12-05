@@ -14,31 +14,15 @@
     <nav>
       <button class="cta" onclick="redirectTo('index.html')">
         <span>Inicio</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
       </button>
       <button class="cta" onclick="redirectTo('explorar.html')">
         <span>Explorar Libros</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
       </button>
       <button class="cta" onclick="redirectTo('comunidad.html')">
         <span>Comunidad</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
       </button>
       <button class="cta" onclick="redirectTo('blog.html')">
         <span>Blog</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
       </button>
     </nav>
     <button class="cta back-btn" onclick="redirectTo('index.html')">
@@ -51,7 +35,6 @@
     <div class="profile-details">
       <p>Nombre de Usuario: <span id="username"></span></p>
       <p>Email: <span id="email"></span></p>
-      <!-- Más detalles de usuario -->
       <h3>Agregar Libros</h3>
       <form id="addBookForm">
         <input type="text" id="title" placeholder="Título" required />
@@ -65,14 +48,13 @@
 
     <section class="user-books">
       <h3>Mis Libros</h3>
-      <div id="book-list"></div> <!-- Aquí aparecerán los libros agregados -->
+      <div id="book-list"></div>
     </section>
   </main>
 
   <footer>
     <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
   </footer>
-
 
   <!-- Modal para editar el libro -->
   <div id="editBookModal" class="modal">
