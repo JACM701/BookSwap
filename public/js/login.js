@@ -13,7 +13,7 @@ function redirectTo(page) {
     const password = document.getElementById("password").value;
   
     try {
-      const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/login", {
+      const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

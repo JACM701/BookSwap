@@ -22,7 +22,7 @@ registerForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/users/register", {
+    const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
