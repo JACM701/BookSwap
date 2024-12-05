@@ -208,18 +208,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       const bookElement = document.createElement("div");
       bookElement.classList.add("book-item");
       bookElement.innerHTML = `
+        <img src="${book.imageUrl}" alt="Imagen de ${book.title}">
         <h4>${book.title}</h4>
         <p><strong>Autor:</strong> ${book.author}</p>
         <p><strong>Género:</strong> ${book.genre}</p>
-        <p>${book.description}</p>
-        <img src="${book.imageUrl}" alt="Imagen de ${book.title}" />
         <button class="edit-btn" onclick="editBook('${book._id}')">Editar</button>
         <button class="delete-btn" onclick="openDeleteModal('${book._id}')">Eliminar</button>
       `;
   
       bookList.appendChild(bookElement);
     });
-  }
+  }  
   
   // Abrir el modal de confirmación de eliminación
   function openDeleteModal(bookId) {
