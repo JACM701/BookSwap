@@ -1,8 +1,3 @@
-// Función para redirigir a otras páginas
-function redirectTo(page) {
-  window.location.href = page;
-}
-
 // Verificar si el usuario está autenticado al cargar la página
 function checkAuthentication() {
   const token = localStorage.getItem('token'); // Suponiendo que guardas el token en localStorage
