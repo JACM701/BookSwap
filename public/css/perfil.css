@@ -325,10 +325,5 @@ button#confirmDeleteBtn {
 
   .book-card img {
     height: 150px;
-    object-fit: cover;
-  }
-
-  .profile-details {
-    padding: 15px;
   }
 }
