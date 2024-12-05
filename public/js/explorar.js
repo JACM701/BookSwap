@@ -1,3 +1,5 @@
+let allBooks = []; // Variable para almacenar todos los libros obtenidos
+
 // Función para manejar el cierre de sesión
 function toggleSession() {
     localStorage.removeItem('token'); // Elimina el token del almacenamiento
@@ -17,21 +19,17 @@ document.getElementById("btnComunidad").addEventListener("click", () => {
   window.location.href = "comunidad.html";
 });
 
-document.getElementById("btnBlog").addEventListener("click", () => {
-  window.location.href = "blog.html";
-});
-
 document.getElementById("btnCerrarSesion").addEventListener("click", () => {
   toggleSession();
 });
 
 // Función para cargar libros desde la API
 function fetchBooks() {
-  fetch('https://api-bookswap.onrender.com/api/books')  // Asegúrate de que esta URL sea la correcta para tu API
+  fetch('https://api-bookswap.onrender.com/api/books') // Cambia por tu URL si es necesario
     .then(response => response.json())
     .then(data => {
-      // Mostrar los libros después de obtenerlos
-      displayBooks(data);
+      allBooks = data; // Almacenar todos los libros
+      displayBooks(allBooks); // Mostrar todos los libros al inicio
     })
     .catch(error => {
       console.error('Error al cargar los libros:', error);
@@ -50,9 +48,17 @@ function displayBooks(booksToDisplay) {
       <img src="${book.image}" alt="${book.title}">
       <h3>${book.title}</h3>
       <p>${book.author}</p>
-      <button onclick="showModal('${book.title}', '${book.author}', '${book.genre}', '${book.description}', '${book.image}')">Ver más</button>
+      <button class="view-more" data-title="${book.title}" data-author="${book.author}" data-genre="${book.genre}" data-description="${book.description}" data-image="${book.image}">Ver más</button>
     `;
     bookCardsContainer.appendChild(bookCard);
+  });
+
+  // Agregar eventos a los botones "Ver más"
+  document.querySelectorAll('.view-more').forEach(button => {
+    button.addEventListener('click', (event) => {
+      const { title, author, genre, description, image } = event.target.dataset;
+      showModal(title, author, genre, description, image);
+    });
   });
 }
 
@@ -71,12 +77,16 @@ function closeModal() {
   document.getElementById("bookModal").style.display = "none";
 }
 
+document.getElementById("bookModal").addEventListener('click', (event) => {
+  if (event.target === document.getElementById("bookModal")) {
+    closeModal();
+  }
+});
+
 // Función para filtrar libros por género
 function filterBooksByGenre(genre) {
-  fetch(`https://api-bookswap.onrender.com/api/books?genre=${genre}`)
-    .then(response => response.json())
-    .then(data => displayBooks(data))
-    .catch(error => console.error('Error al filtrar los libros:', error));
+  const filteredBooks = genre === 'Todos' ? allBooks : allBooks.filter(book => book.genre === genre);
+  displayBooks(filteredBooks);
 }
 
 // Llamada inicial para cargar los libros
