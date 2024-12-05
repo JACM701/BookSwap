@@ -1,8 +1,3 @@
-// Función para redirigir a la página correspondiente cuando se hace clic en un botón
-function redirectTo(page) {
-    window.location.href = page;
-  }
-  
   // Función para procesar el formulario de login
 const loginForm = document.getElementById("login-form");
 
@@ -31,7 +26,7 @@ loginForm.addEventListener("submit", async (e) => {
     if (response.ok) {
       alert("Inicio de sesión exitoso. Redirigiendo a tu perfil...");
       localStorage.setItem("token", data.token); // Guardar token en localStorage
-      window.location.href = "perfil.html"; // Redirigir a la página de perfil
+      window.location.href = "index.html"; // Redirigir a la página de perfil
     } else {
       alert(data.message || "Error en las credenciales. Por favor, verifica tus datos.");
     }

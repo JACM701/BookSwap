@@ -7,48 +7,6 @@
   <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <h1>BookSwap</h1>
-    </div>
-    <nav>
-      <button class="cta" onclick="redirectTo('explorar.html')">
-        <span>Explorar Libros</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('perfil.html')">
-        <span>Perfil</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('comunidad.html')">
-        <span>Comunidad</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-      <button class="cta" onclick="redirectTo('blog.html')">
-        <span>Blog</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-          <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
-      </button>
-    </nav>
-    <button class="cta login-btn" onclick="redirectTo('login.html')">
-      <span>Iniciar Sesión</span>
-      <svg width="15px" height="10px" viewBox="0 0 13 10">
-        <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-      </svg>
-    </button>
-  </header>
 
   <main class="login-content">
     <h2>Iniciar Sesión</h2>
@@ -60,18 +18,6 @@
     </form>    
     <p>¿No tienes cuenta? <a href="registro.html">Regístrate aquí</a>.</p>
   </main>
-
-<!-- Agrega este modal al final de tu HTML antes de cerrar el </body> -->
-<div id="custom-alert" class="modal">
-  <div class="modal-content">
-    <span class="close-btn">&times;</span>
-    <p id="alert-message"></p>
-  </div>
-</div>
-
-  <footer>
-    <p>&copy; 2024 BookSwap | Contacto | Términos de Uso | Privacidad</p>
-  </footer>
 
   <script src="js/login.js"></script>
 </body>
