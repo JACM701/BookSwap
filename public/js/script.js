@@ -46,7 +46,7 @@ async function getBooks() {
   }
 
   try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
+    const response = await fetch("https://bookswap-w7ze.onrender.com/api/books/user", {
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -55,7 +55,7 @@ async function getBooks() {
     const books = await response.json();
     displayBooks(books);
   } catch (error) {
-    console.error("Error al obtener los libros:", error);
+    console.error("Error:", error);
   }
 }
 
@@ -77,39 +77,6 @@ function displayBooks(books) {
     `;
     booksList.appendChild(bookDiv);
   });
-}
-
-// Función para agregar un libro
-async function addBook(event) {
-  event.preventDefault();
-  const token = localStorage.getItem("token");
-  const newBook = {
-    title: document.getElementById("title").value,
-    author: document.getElementById("author").value,
-    genre: document.getElementById("genre").value,
-    description: document.getElementById("description").value,
-    imageUrl: document.getElementById("imageUrl").value,
-  };
-
-  try {
-    const response = await fetch("https://bookswap-w7ze.onrender.com/api/books", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(newBook),
-    });
-
-    if (response.ok) {
-      alert("Libro agregado con éxito");
-      getBooks(); // Recargar los libros después de agregar uno nuevo
-    } else {
-      alert("Error al agregar el libro");
-    }
-  } catch (error) {
-    console.error("Error al agregar el libro:", error);
-  }
 }
 
 // Editar un libro
@@ -157,16 +124,16 @@ async function editBook(bookId) {
 
         if (updateResponse.ok) {
           alert("Libro actualizado con éxito");
-          window.location.reload(); // Recargar la página para ver los cambios
+          window.location.reload();
         } else {
           alert("Error al actualizar el libro");
         }
       } catch (error) {
-        console.error("Error al actualizar el libro:", error);
+        console.error("Error:", error);
       }
     };
   } catch (error) {
-    console.error("Error al obtener el libro:", error);
+    console.error("Error:", error);
   }
 }
 
@@ -189,7 +156,7 @@ async function deleteBook(bookId) {
       alert("Error al eliminar el libro");
     }
   } catch (error) {
-    console.error("Error al eliminar el libro:", error);
+    console.error("Error:", error);
   }
 }
 
@@ -200,6 +167,3 @@ function closeModal() {
 
 // Llamar a getBooks para cargar los libros al cargar la página
 getBooks();
-
-// Llamar a addBook cuando se envíe el formulario de agregar libro
-document.getElementById("addBookForm").onsubmit = addBook;
