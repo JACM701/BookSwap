@@ -5,14 +5,18 @@ const jwt = require('jsonwebtoken');
 exports.register = async (req, res) => {
   const { name, email, password } = req.body;
   try {
+    // Verifica si el usuario ya existe
     const userExists = await User.findOne({ email });
-    if (userExists) return res.status(400).json({ message: 'El correo ya está registrado' });
+    if (userExists) {
+      return res.status(400).json({ message: 'El correo ya está registrado' });
+    }
 
+    // Crea un nuevo usuario
     const user = new User({ name, email, password });
     await user.save();
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-    res.status(201).json({ token, user });
+    // Devuelve un mensaje de éxito, pero no un token
+    res.status(201).json({ message: 'Usuario registrado exitosamente' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -22,11 +26,13 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
+    // Verifica si el usuario existe
     const user = await User.findOne({ email });
     if (!user || !(await user.matchPassword(password))) {
       return res.status(400).json({ message: 'Credenciales incorrectas' });
     }
 
+    // Genera un token para el usuario
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.status(200).json({ token, user });
   } catch (error) {

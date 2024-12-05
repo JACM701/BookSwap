@@ -4,39 +4,35 @@ function redirectTo(page) {
   }
   
   // Función para procesar el formulario de login
-  const loginForm = document.getElementById("login-form");
+  document.addEventListener("DOMContentLoaded", async () => {
+    const token = localStorage.getItem("token");
   
-  loginForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-  
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-  
-    if (!email || !password) {
-      alert("Por favor, completa todos los campos.");
+    if (!token) {
+      alert("No estás autenticado. Redirigiendo al login...");
+      window.location.href = "login.html";
       return;
     }
   
     try {
-      const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/login", {
-        method: "POST",
+      const response = await fetch("https://bookswap-w7ze.onrender.com/api/auth/profile", {
+        method: "GET",
         headers: {
-          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`, // Incluye el token en el encabezado
         },
-        body: JSON.stringify({ email, password }),
       });
   
       const data = await response.json();
   
       if (response.ok) {
-        alert("Inicio de sesión exitoso. Redirigiendo a tu perfil...");
-        localStorage.setItem("token", data.token);
-        window.location.href = "perfil.html"; // Redirigir a la página de perfil
+        document.getElementById("user-name").textContent = data.name;
+        document.getElementById("user-email").textContent = data.email;
       } else {
-        alert(data.message || "Error en las credenciales. Por favor, verifica tus datos.");
+        alert(data.message || "Hubo un problema al obtener tu perfil. Por favor, inicia sesión nuevamente.");
+        localStorage.removeItem("token"); // Limpia el token inválido
+        window.location.href = "login.html";
       }
     } catch (error) {
-      alert("Ocurrió un error al iniciar sesión. Inténtalo nuevamente más tarde.");
+      alert("Error al cargar el perfil. Por favor, inténtalo más tarde.");
       console.error("Error:", error);
     }
   });
