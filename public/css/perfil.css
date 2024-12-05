@@ -176,6 +176,13 @@ form button:hover {
   margin-bottom: 10px;
 }
 
+.book-image {
+  max-width: 100%; /* Limita el ancho de la imagen al 100% del contenedor */
+  height: auto; /* Mantiene la relación de aspecto */
+  max-height: 200px; /* Limita la altura máxima */
+  object-fit: cover; /* Asegura que la imagen no se distorsione */
+}
+
 .book-card p {
   font-size: 0.9em;
   margin-top: 10px;
